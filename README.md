@@ -1,6 +1,23 @@
 # minesweeper
 
-A new Flutter project.
+Flutter Game - Minesweeper inspired by: https://minesweeper.online/pt/game/639574193
+
+Assets from: https://iconduck.com
+Fonts from: https://fonts.google.com
+
+## Minesweeper Rules
+
+Objective and basic concepts
+
+The objective in Minesweeper is to find and mark all the mines hidden under the grey squares, in the shortest time possible. This is done by clicking on the squares to open them. Each square will have one of the following:
+
+    A mine, and if you click on it you'll lose the game.
+    A number, which tells you how many of its adjacent squares have mines in them.
+    Nothing. In this case you know that none of the adjacent squares have mines, and they will be automatically opened as well.
+
+It is guaranteed that the first square you open won't contain a mine, so you can start by clicking any square. Often you'll hit on an empty square on the first try and then you'll open up a few adjacent squares as well, which makes it easier to continue. Then it's basically just looking at the numbers shown, and figuring out where the mines are. 
+
+Credits: https://cardgames.io/minesweeper/#rules
 
 ## Getting Started
 

@@ -10,7 +10,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int played = 0;
   int score = 0;
-  bool loose = false;
+  bool lose = false;
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +64,7 @@ class _HomePageState extends State<HomePage> {
                           width: 50,
                           height: 60,
                           decoration: buildBoxDecorationOut(),
-                          child: SvgPicture.asset((loose)
+                          child: SvgPicture.asset((lose)
                               ? "assets/images/face-sad.svg"
                               : "assets/images/face-smile.svg"),
                         ),
@@ -163,15 +163,14 @@ class _HomePageState extends State<HomePage> {
           height: 25,
           width: 25,
           decoration: buildBoxDecorationOut(),
-          child: (loose)
-              ? SvgPicture.asset("assets/images/bomb.svg")
-              : Container(),
+          child:
+              (lose) ? SvgPicture.asset("assets/images/bomb.svg") : Container(),
         ),
         onTap: () {
           print("item [$rowIndex][$i] clicked!");
           setState(() {
             if (rowIndex == 0 && i == 0) {
-              loose = !loose;
+              lose = !lose;
             }
             played++;
             score++;
