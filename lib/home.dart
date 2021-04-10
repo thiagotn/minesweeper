@@ -11,6 +11,7 @@ class _HomePageState extends State<HomePage> {
   int played = 0;
   int score = 0;
   bool lose = false;
+  bool started = false;
 
   @override
   Widget build(BuildContext context) {
@@ -95,6 +96,32 @@ class _HomePageState extends State<HomePage> {
                     child: buildTable(),
                   ),
                 ),
+                SizedBox(
+                  height: 10,
+                ),
+                GestureDetector(
+                  child: Container(
+                    decoration: buildBoxDecorationOut(),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        "Recomeçar",
+                        style: TextStyle(
+                          fontSize: 28,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                  onTap: () {
+                    setState(() {
+                      played = 0;
+                      score = 0;
+                      lose = false;
+                      started = false;
+                    });
+                  },
+                ),
               ],
             ),
           ),
@@ -169,8 +196,12 @@ class _HomePageState extends State<HomePage> {
         onTap: () {
           print("item [$rowIndex][$i] clicked!");
           setState(() {
+            if (!started) {
+              started = true;
+            }
             if (rowIndex == 0 && i == 0) {
               lose = !lose;
+              started = false;
             }
             played++;
             score++;
