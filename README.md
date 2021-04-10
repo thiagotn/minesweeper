@@ -3,6 +3,7 @@
 Flutter Game - Minesweeper inspired by: https://minesweeper.online/pt/game/639574193
 
 Assets from: https://iconduck.com
+
 Fonts from: https://fonts.google.com
 
 ## Minesweeper Rules
