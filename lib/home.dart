@@ -160,7 +160,7 @@ class _HomePageState extends State<HomePage> {
     for (var i = 0; i < length; i++) {
       widgets[i] = GestureDetector(
         child: Container(
-          height: 30,
+          height: 25,
           width: 25,
           decoration: buildBoxDecorationOut(),
           child: (loose)
@@ -170,6 +170,9 @@ class _HomePageState extends State<HomePage> {
         onTap: () {
           print("item [$rowIndex][$i] clicked!");
           setState(() {
+            if (rowIndex == 0 && i == 0) {
+              loose = !loose;
+            }
             played++;
             score++;
           });
