@@ -13,7 +13,7 @@ class GameActions extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Text(
-            "Recomeçar",
+            bloc.started ? "Recomeçar" : "Iniciar",
             style: TextStyle(
               fontSize: 28,
               fontWeight: FontWeight.bold,

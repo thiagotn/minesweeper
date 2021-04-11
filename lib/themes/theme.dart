@@ -68,6 +68,12 @@ BoxDecoration buildBoxDecorationScoreBoard() {
   );
 }
 
+BoxDecoration buildBoxDecorationClicked() {
+  return BoxDecoration(
+    color: Color(0xffbcbcbc),
+  );
+}
+
 BoxDecoration buildBoxDecorationIn() {
   return BoxDecoration(
     color: Color(0xffbcbcbc),

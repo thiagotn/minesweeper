@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:minesweeper/widgets/game-actions.widget.dart';
+import 'package:minesweeper/widgets/game-app-bar.widget.dart';
 import 'package:minesweeper/widgets/game-arena.widget.dart';
 import 'package:minesweeper/widgets/scoreboard.widget.dart';
 
@@ -7,17 +8,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "Campo Minado",
-          style: TextStyle(
-            fontSize: 34,
-            fontWeight: FontWeight.bold,
-            fontFamily: 'BungeeShade',
-          ),
-        ),
-        centerTitle: true,
-      ),
+      appBar: gameAppBar(),
       body: Container(
         color: Colors.black12,
         child: Padding(
