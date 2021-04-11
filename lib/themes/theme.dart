@@ -55,3 +55,39 @@ ThemeData appTheme() {
     primarySwatch: primarySwatch,
   );
 }
+
+BoxDecoration buildBoxDecorationScoreBoard() {
+  return BoxDecoration(
+    color: Colors.red.shade900,
+    border: Border(
+      top: BorderSide(color: Colors.red.shade50, width: 3.0),
+      left: BorderSide(color: Colors.red.shade50, width: 3.0),
+      bottom: BorderSide(color: Colors.red.shade300, width: 3.0),
+      right: BorderSide(color: Colors.red.shade300, width: 3.0),
+    ),
+  );
+}
+
+BoxDecoration buildBoxDecorationIn() {
+  return BoxDecoration(
+    color: Color(0xffbcbcbc),
+    border: Border(
+      top: BorderSide(color: Colors.grey, width: 3.0),
+      left: BorderSide(color: Colors.grey, width: 3.0),
+      bottom: BorderSide(color: Colors.white, width: 3.0),
+      right: BorderSide(color: Colors.white, width: 3.0),
+    ),
+  );
+}
+
+BoxDecoration buildBoxDecorationOut() {
+  return BoxDecoration(
+    color: Color(0xeeeeee),
+    border: Border(
+      top: BorderSide(color: Colors.white, width: 3.0),
+      left: BorderSide(color: Colors.white, width: 3.0),
+      bottom: BorderSide(color: Colors.grey, width: 3.0),
+      right: BorderSide(color: Colors.grey, width: 3.0),
+    ),
+  );
+}
