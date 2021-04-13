@@ -1,22 +1,13 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:minesweeper/blocs/game.bloc.dart';
 import 'package:minesweeper/themes/theme.dart';
 import 'package:minesweeper/widgets/game-actions.widget.dart';
 import 'package:minesweeper/widgets/game-app-bar.widget.dart';
 import 'package:minesweeper/widgets/scoreboard.widget.dart';
+import 'package:provider/provider.dart';
 
-class GamePage extends StatefulWidget {
-  @override
-  _GamePageState createState() => _GamePageState();
-}
-
-class _GamePageState extends State<GamePage> {
-  static final int x = 16; // rows
-  static final int y = 16; // columns
-  static final int mines = 26; // mines
-
+class GamePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +23,7 @@ class _GamePageState extends State<GamePage> {
           SizedBox(
             height: 10,
           ),
-          _buildGameBody(16),
+          _buildGameBody(context),
           SizedBox(
             height: 10,
           ),
@@ -42,87 +33,53 @@ class _GamePageState extends State<GamePage> {
     );
   }
 
-  List<List<String>> gridState =
-      List.generate(x, (i) => List.generate(y, (j) => ""));
-
-  List<List<String>> gridStateWithMines =
-      List.generate(x, (i) => List.generate(y, (j) => ""));
-
-  List<List<String>> clean(List<List<String>> gridState) {
-    for (var i = 0; i < x; i++) {
-      for (var j = 0; j < y; j++) {
-        gridState[i][j] = '';
-      }
-    }
-    return gridState;
-  }
-
-  putMines() {
-    clean(gridStateWithMines);
-    for (var i = 0; i < mines; i++) {
-      int randomRowIndex;
-      int randomColumnIndex;
-
-      do {
-        randomRowIndex = _random(0, x - 1);
-        randomColumnIndex = _random(0, y - 1);
-      } while (gridState[randomRowIndex][randomColumnIndex] == 'X');
-
-      gridStateWithMines[randomRowIndex][randomColumnIndex] = 'X';
-    }
-  }
-
-  int _random(int min, int max) {
-    Random rnd;
-    int min = 0;
-    rnd = new Random();
-    var result = min + rnd.nextInt(max - min);
-    return result;
-  }
-
-  Widget _buildGameBody(int length) {
-    putMines();
-    int gridStateLength = length;
+  Widget _buildGameBody(BuildContext context) {
+    GameBloc bloc = Provider.of<GameBloc>(context);
+    bloc.putMines();
     return Container(
       alignment: Alignment.center,
       height: 395,
       decoration: buildBoxDecorationIn(),
       child: GridView.builder(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: gridStateLength,
+          crossAxisCount: bloc.x,
         ),
         itemBuilder: _buildGridItems,
-        itemCount: gridStateLength * gridStateLength,
+        itemCount: bloc.x * bloc.y,
       ),
     );
   }
 
   Widget _buildGridItems(BuildContext context, int index) {
-    int gridStateLength = gridState.length;
+    GameBloc bloc = Provider.of<GameBloc>(context);
+    int gridStateLength = bloc.gridState.length;
     int x, y = 0;
     x = (index / gridStateLength).floor();
     y = (index % gridStateLength);
     return GestureDetector(
       onTap: () {
-        setState(() {
-          if (gridStateWithMines[x][y] == '') {
-            gridState[x][y] = '0';
-          } else if (gridStateWithMines[x][y] == 'X') {
-            gridState[x][y] = 'X';
-            gridStateWithMines[x][y] = 'X';
-            mergeGrids();
-          }
-        });
-        print("tapped: $x $y");
+        bloc.onTap(x, y);
       },
       child: GridTile(
-        child: _buildGridItem(x, y),
+        child: GridItem(x: x, y: y),
       ),
     );
   }
+}
 
-  Widget _buildGridItem(int x, int y) {
-    switch (gridState[x][y]) {
+class GridItem extends StatelessWidget {
+  final int x;
+  final int y;
+
+  const GridItem({
+    @required this.x,
+    @required this.y,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    GameBloc bloc = Provider.of<GameBloc>(context);
+    switch (bloc.gridState[x][y]) {
       case '':
         return Container(
           width: 25,
@@ -151,16 +108,6 @@ class _GamePageState extends State<GamePage> {
           height: 25,
           decoration: buildBoxDecorationOut(),
         );
-    }
-  }
-
-  void mergeGrids() {
-    for (var i = 0; i < x; i++) {
-      for (var j = 0; j < y; j++) {
-        if (gridStateWithMines[i][j] == 'X') {
-          gridState[i][j] = gridStateWithMines[i][j];
-        }
-      }
     }
   }
 }

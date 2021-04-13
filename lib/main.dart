@@ -4,8 +4,6 @@ import 'package:minesweeper/pages/game.page.dart';
 import 'package:minesweeper/themes/theme.dart';
 import 'package:provider/provider.dart';
 
-import 'pages/home.dart';
-
 void main() {
   runApp(MyApp());
 }
