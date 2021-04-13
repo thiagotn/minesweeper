@@ -8,69 +8,100 @@ class GameArena extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bloc = Provider.of<GameBloc>(context);
+    bloc.putMines();
     return Container(
       decoration: buildBoxDecorationIn(),
       child: Container(
         decoration: buildBoxDecorationIn(),
-        child: Table(
-          children: buildRows(bloc.rows, bloc.columns, context),
+        child: Consumer<GameBloc>(
+          builder: (context, bloc, child) {
+            if (bloc.gridState == null) {
+              return CircularProgressIndicator();
+            }
+            return _buildGameBody(bloc.rows, context);
+          },
         ),
       ),
     );
   }
 
-  List<TableRow> buildRows(int row, int col, BuildContext context) {
-    var rows = List<TableRow>.filled(row, null);
-    for (var i = 0; i < row; i++) {
-      rows[i] = TableRow(
-        children: buildItems(i, col),
-      );
-    }
-    return rows;
-  }
-
-  List<Widget> buildItems(int rowIndex, int length) {
-    List<Widget> widgets = List<Widget>.filled(length, null);
-    for (var i = 0; i < length; i++) {
-      widgets[i] = Area(
-        rowPosition: rowIndex,
-        colPosition: i,
-      );
-    }
-    return widgets;
-  }
-}
-
-class Area extends StatelessWidget {
-  final int rowPosition;
-  final int colPosition;
-
-  const Area({
-    @required this.rowPosition,
-    @required this.colPosition,
-  });
-
-  @override
-  Widget build(BuildContext context) {
+  Widget _buildGameBody(int length, BuildContext context) {
     final bloc = Provider.of<GameBloc>(context);
-
-    return GestureDetector(
-      child: Container(
-        height: 25,
-        width: 25,
-        decoration: buildBoxDecorationOut(),
-        //  (bloc.containsMine(rowPosition, colPosition))
-        //     ? buildBoxDecorationClicked()
-        //     : buildBoxDecorationOut(),
-        child: (bloc.containsMine(rowPosition, colPosition) && bloc.lose)
-            ? SvgPicture.asset("assets/images/bomb.svg")
-            : Container(),
+    bloc.putMines();
+    int gridStateLength = length;
+    return Column(children: <Widget>[
+      AspectRatio(
+        aspectRatio: 1.0,
+        child: Container(
+          padding: const EdgeInsets.all(8.0),
+          margin: const EdgeInsets.all(8.0),
+          decoration: BoxDecoration(
+              border: Border.all(color: Colors.black, width: 2.0)),
+          child: GridView.builder(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: gridStateLength,
+            ),
+            itemBuilder: _buildGridItems,
+            itemCount: gridStateLength * gridStateLength,
+          ),
+        ),
       ),
+    ]);
+  }
+
+  Widget _buildGridItems(BuildContext context, int index) {
+    final bloc = Provider.of<GameBloc>(context);
+    int gridStateLength = bloc.columns;
+    int x, y = 0;
+    x = (index / gridStateLength).floor();
+    y = (index % gridStateLength);
+    return GestureDetector(
       onTap: () {
-        print("item [$rowPosition][$colPosition] clicked!");
-        bloc.onTap(rowPosition, colPosition);
-        // if (bloc.containsMine(rowIndex, i)) {}
+        bloc.onTap(x, y);
       },
+      child: GridTile(
+        child: Container(
+          decoration: BoxDecoration(
+              border: Border.all(color: Colors.black, width: 0.5)),
+          child: Center(
+            child: buildGridItem(context, x, y),
+          ),
+        ),
+      ),
     );
+  }
+
+  Widget buildGridItem(BuildContext context, int x, int y) {
+    final bloc = Provider.of<GameBloc>(context);
+    switch (bloc.gridState[x][y]) {
+      case '':
+        return Container(
+          width: 25,
+          height: 25,
+          decoration: buildBoxDecorationOut(),
+        );
+        break;
+      case '0':
+        return Container(
+          width: 25,
+          height: 25,
+          decoration: buildBoxDecorationClicked(),
+        );
+        break;
+      case 'X':
+        return Container(
+          width: 25,
+          height: 25,
+          decoration: buildBoxDecorationIn(),
+          child: SvgPicture.asset("assets/images/bomb.svg"),
+        );
+        break;
+      default:
+        return Container(
+          width: 25,
+          height: 25,
+          decoration: buildBoxDecorationOut(),
+        );
+    }
   }
 }

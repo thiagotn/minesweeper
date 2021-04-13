@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:minesweeper/blocs/game.bloc.dart';
+import 'package:minesweeper/pages/game.page.dart';
 import 'package:minesweeper/themes/theme.dart';
 import 'package:provider/provider.dart';
 
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Campo Minado',
         theme: appTheme(),
-        home: HomePage(),
+        home: GamePage(),
         debugShowCheckedModeBanner: false,
       ),
     );
