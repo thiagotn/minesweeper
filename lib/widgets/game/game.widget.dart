@@ -29,6 +29,11 @@ class Game extends StatelessWidget {
     int x, y = 0;
     x = (index / gridStateLength).floor();
     y = (index % gridStateLength);
+    if (bloc.lose) {
+      return GridTile(
+        child: Square(x: x, y: y),
+      );
+    }
     return GestureDetector(
       onTap: () {
         bloc.onTap(x, y);

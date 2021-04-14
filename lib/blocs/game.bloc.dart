@@ -37,8 +37,8 @@ class GameBloc extends ChangeNotifier {
       int randomColumnIndex;
 
       do {
-        randomRowIndex = _random(0, x - 1);
-        randomColumnIndex = _random(0, y - 1);
+        randomRowIndex = _random(0, x);
+        randomColumnIndex = _random(0, y);
       } while (gridState[randomRowIndex][randomColumnIndex] == 'X');
 
       gridStateWithMines[randomRowIndex][randomColumnIndex] = 'X';
