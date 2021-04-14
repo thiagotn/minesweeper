@@ -1,8 +1,11 @@
+import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
 
 class GameBloc extends ChangeNotifier {
+  Timer timer;
+  double seconds = 0;
   int played = 0;
   int score = 0;
   bool lose = false;
@@ -47,7 +50,7 @@ class GameBloc extends ChangeNotifier {
 
   void onTap(int x, int y) {
     if (!started) {
-      started = true;
+      start();
     }
     // print("tapped: $x $y");
     if (gridStateWithMines[x][y] == '') {
@@ -62,19 +65,36 @@ class GameBloc extends ChangeNotifier {
 
   void loseGame(int x, int y) {
     lose = true;
+    started = false;
     gridState[x][y] = 'X';
     gridStateWithMines[x][y] = 'X';
     _mergeGrids();
+    timer.cancel();
+  }
+
+  start() {
+    started = true;
+    timer = Timer.periodic(
+      Duration(seconds: 1),
+      (Timer t) => updateTime(),
+    );
+    notifyListeners();
   }
 
   restart() {
     played = 0;
     score = 0;
+    seconds = 0;
     lose = false;
     started = false;
     gridState = List.generate(x, (i) => List.generate(y, (j) => ""));
     gridStateWithMines = List.generate(x, (i) => List.generate(y, (j) => ""));
     putMines();
+    notifyListeners();
+  }
+
+  updateTime() {
+    seconds++;
     notifyListeners();
   }
 

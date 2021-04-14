@@ -9,9 +9,7 @@ class GamePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: gameAppBar(),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.start,
+      body: ListView(
         children: [
           SizedBox(
             height: 10,

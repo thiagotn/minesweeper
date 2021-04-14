@@ -18,15 +18,17 @@ class Scoreboard extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 8.0),
             child: Container(
+              width: 110,
               alignment: Alignment.center,
-              width: 90,
-              height: 60,
               decoration: buildBoxDecorationScoreBoard(),
-              child: Text(
-                "${sprintf("%04i", [bloc.score])}",
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  "${sprintf("%04i", [bloc.score])}",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ),
@@ -35,8 +37,6 @@ class Scoreboard extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Container(
               alignment: Alignment.center,
-              width: 50,
-              height: 60,
               decoration: buildBoxDecorationOut(),
               child: SvgPicture.asset((bloc.lose)
                   ? "assets/images/face-sad.svg"
@@ -46,15 +46,17 @@ class Scoreboard extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Container(
+              width: 110,
               alignment: Alignment.center,
-              width: 90,
-              height: 60,
               decoration: buildBoxDecorationScoreBoard(),
-              child: Text(
-                "${sprintf("%04i", [bloc.played])}",
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  "${_printDuration(Duration(seconds: bloc.seconds.toInt()))}",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ),
@@ -62,5 +64,15 @@ class Scoreboard extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  String _printDuration(Duration duration) {
+    String twoDigits(int n) => n.toString().padLeft(2, "0");
+    String twoDigitMinutes = twoDigits(duration.inMinutes.remainder(60));
+    String twoDigitSeconds = twoDigits(duration.inSeconds.remainder(60));
+    if (duration.inHours > 0) {
+      return "${twoDigits(duration.inHours)}:$twoDigitMinutes:$twoDigitSeconds";
+    }
+    return "$twoDigitMinutes:$twoDigitSeconds";
   }
 }

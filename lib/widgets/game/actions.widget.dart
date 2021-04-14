@@ -14,15 +14,17 @@ class GameActions extends StatelessWidget {
       maintainAnimation: true,
       replacement: Container(),
       child: GestureDetector(
-        child: Container(
-          decoration: buildBoxDecorationOut(),
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              bloc.lose ? "Recomeçar" : "Iniciar",
-              style: TextStyle(
-                fontSize: 28,
-                fontWeight: FontWeight.bold,
+        child: Center(
+          child: Container(
+            decoration: buildBoxDecorationOut(),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                bloc.lose ? "Recomeçar" : "Iniciar",
+                style: TextStyle(
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ),
