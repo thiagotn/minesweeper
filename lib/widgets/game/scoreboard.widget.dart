@@ -23,9 +23,9 @@ class Scoreboard extends StatelessWidget {
               height: 60,
               decoration: buildBoxDecorationScoreBoard(),
               child: Text(
-                "${sprintf("%03i", [bloc.score])}",
+                "${sprintf("%04i", [bloc.score])}",
                 style: TextStyle(
-                  fontSize: 28,
+                  fontSize: 24,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -51,9 +51,9 @@ class Scoreboard extends StatelessWidget {
               height: 60,
               decoration: buildBoxDecorationScoreBoard(),
               child: Text(
-                "${sprintf("%03i", [bloc.played])}",
+                "${sprintf("%04i", [bloc.played])}",
                 style: TextStyle(
-                  fontSize: 28,
+                  fontSize: 24,
                   fontWeight: FontWeight.bold,
                 ),
               ),

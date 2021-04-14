@@ -53,14 +53,18 @@ class GameBloc extends ChangeNotifier {
     if (gridStateWithMines[x][y] == '') {
       gridState[x][y] = '0';
     } else if (gridStateWithMines[x][y] == 'X') {
-      lose = true;
-      gridState[x][y] = 'X';
-      gridStateWithMines[x][y] = 'X';
-      _mergeGrids();
+      loseGame(x, y);
     }
     played++;
     score++;
     notifyListeners();
+  }
+
+  void loseGame(int x, int y) {
+    lose = true;
+    gridState[x][y] = 'X';
+    gridStateWithMines[x][y] = 'X';
+    _mergeGrids();
   }
 
   restart() {
