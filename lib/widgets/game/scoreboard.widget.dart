@@ -19,6 +19,7 @@ class Scoreboard extends StatelessWidget {
             padding: const EdgeInsets.only(left: 8.0),
             child: Container(
               width: 110,
+              height: 60,
               alignment: Alignment.center,
               decoration: buildBoxDecorationScoreBoard(),
               child: Padding(
@@ -47,6 +48,7 @@ class Scoreboard extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Container(
               width: 110,
+              height: 60,
               alignment: Alignment.center,
               decoration: buildBoxDecorationScoreBoard(),
               child: Padding(
@@ -54,7 +56,7 @@ class Scoreboard extends StatelessWidget {
                 child: Text(
                   "${_printDuration(Duration(seconds: bloc.seconds.toInt()))}",
                   style: TextStyle(
-                    fontSize: 22,
+                    fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
