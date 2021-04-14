@@ -36,7 +36,7 @@ class Square extends StatelessWidget {
           width: 25,
           height: 25,
           decoration: buildBoxDecorationIn(),
-          child: SvgPicture.asset("assets/images/bomb.svg"),
+          child: SvgPicture.asset("assets/images/mine.svg"),
         );
         break;
       default:

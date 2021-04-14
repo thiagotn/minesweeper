@@ -18,7 +18,7 @@ class Scoreboard extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 8.0),
             child: Container(
-              width: 110,
+              width: 125,
               height: 60,
               alignment: Alignment.center,
               decoration: buildBoxDecorationScoreBoard(),
@@ -47,7 +47,7 @@ class Scoreboard extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Container(
-              width: 110,
+              width: 125,
               height: 60,
               alignment: Alignment.center,
               decoration: buildBoxDecorationScoreBoard(),

@@ -54,6 +54,7 @@ flutter:
     - assets/images/bomb.svg
     - assets/images/face-sad.svg
     - assets/images/face-smile.svg
+    - assets/images/mine.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
