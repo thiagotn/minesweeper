@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:minesweeper/blocs/game.bloc.dart';
+import 'package:minesweeper/blocs/game.config.dart';
 import 'package:minesweeper/themes/theme.dart';
 import 'package:provider/provider.dart';
 
@@ -16,22 +17,23 @@ class Square extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     GameBloc bloc = Provider.of<GameBloc>(context);
-    switch (bloc.gridState[x][y]) {
-      case '':
+    var value = bloc.gridState[x][y];
+    switch (value) {
+      case empty:
         return Container(
           width: 25,
           height: 25,
           decoration: buildBoxDecorationOut(),
         );
         break;
-      case '0':
+      case opened:
         return Container(
           width: 25,
           height: 25,
           decoration: buildBoxDecorationClicked(),
         );
         break;
-      case 'X':
+      case hasMine:
         return Container(
           width: 25,
           height: 25,
@@ -43,8 +45,36 @@ class Square extends StatelessWidget {
         return Container(
           width: 25,
           height: 25,
-          decoration: buildBoxDecorationOut(),
+          decoration: buildBoxDecorationClicked(),
+          child: Center(
+            child: Text(
+              "$value",
+              style: TextStyle(
+                fontSize: 18,
+                color: getColor(value),
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
         );
+    }
+  }
+
+  getColor(value) {
+    switch (value) {
+      case 1:
+        return Colors.blue;
+        break;
+      case 2:
+        return Colors.green;
+        break;
+      case 3:
+        return Colors.red;
+        break;
+      case 4:
+        return Colors.purple;
+        break;
+      default:
     }
   }
 }

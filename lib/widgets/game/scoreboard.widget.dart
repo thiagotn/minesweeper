@@ -3,7 +3,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:minesweeper/blocs/game.bloc.dart';
 import 'package:minesweeper/themes/theme.dart';
 import 'package:provider/provider.dart';
-import 'package:sprintf/sprintf.dart';
 
 class Scoreboard extends StatelessWidget {
   @override
@@ -25,7 +24,7 @@ class Scoreboard extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  "${sprintf("%04i", [bloc.score])}",
+                  "${bloc.mines}",
                   style: TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.bold,

@@ -8,17 +8,16 @@ class Game extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     GameBloc bloc = Provider.of<GameBloc>(context);
-    bloc.putMines();
     return Container(
       alignment: Alignment.center,
-      height: 415,
       decoration: buildBoxDecorationIn(),
       child: GridView.builder(
+        shrinkWrap: true,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: bloc.x,
+          crossAxisCount: bloc.rows,
         ),
         itemBuilder: _buildSquareItems,
-        itemCount: bloc.x * bloc.y,
+        itemCount: bloc.rows * bloc.columns,
       ),
     );
   }

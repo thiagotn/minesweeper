@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:minesweeper/blocs/game.bloc.dart';
 import 'package:minesweeper/pages/game.page.dart';
 import 'package:minesweeper/themes/theme-simple.dart';
-import 'package:minesweeper/themes/theme.dart';
 import 'package:provider/provider.dart';
 
 void main() {
