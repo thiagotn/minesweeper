@@ -71,6 +71,12 @@ BoxDecoration buildBoxDecorationScoreBoard() {
 BoxDecoration buildBoxDecorationClicked() {
   return BoxDecoration(
     color: Color(0xffbcbcbc),
+    border: Border(
+      // top: BorderSide(color: Colors.black, width: 0.5),
+      // left: BorderSide(color: Colors.black, width: 0.5),
+      bottom: BorderSide(color: Colors.black, width: 0.5),
+      right: BorderSide(color: Colors.black, width: 0.5),
+    ),
   );
 }
 

@@ -56,7 +56,7 @@ class GameBloc extends ChangeNotifier {
     for (int i = 0; i < rows; i++) {
       for (int j = 0; j < rows; j++) {
         if (gridStateWithMines[i][j] == hasMine) {
-          expand(i, j);
+          fillAdjacents(i, j);
         }
       }
     }
@@ -154,7 +154,7 @@ class GameBloc extends ChangeNotifier {
     }
   }
 
-  void expand(int x, int y) {
+  void fillAdjacents(int x, int y) {
     recalculateAdjacents(x, y);
     recalculateAdjacents(x, y - 1); // left; 10
     recalculateAdjacents(x, y + 1); // right; 12
