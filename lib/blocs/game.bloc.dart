@@ -54,7 +54,7 @@ class GameBloc extends ChangeNotifier {
     // print("------------------ game with bombs end-----------------");
 
     for (int i = 0; i < rows; i++) {
-      for (int j = 0; j < rows; j++) {
+      for (int j = 0; j < columns; j++) {
         if (gridStateWithMines[i][j] == hasMine) {
           fillAdjacents(i, j);
         }
@@ -62,7 +62,7 @@ class GameBloc extends ChangeNotifier {
     }
 
     print("------------------ game with bombs and tips start-----------------");
-    printGrid();
+    printGridWithMines();
     print("------------------ game with bombs and tips ended-----------------");
   }
 
@@ -74,15 +74,107 @@ class GameBloc extends ChangeNotifier {
     print("tapped: $x $y");
     if (gridStateWithMines[x][y] == empty) {
       gridState[x][y] = opened;
+      expand(x, y);
     } else if (gridStateWithMines[x][y] == hasMine) {
       loseGame(x, y);
     } else {
-      print("else case....${gridStateWithMines[x][y]}");
       gridState[x][y] = gridStateWithMines[x][y];
     }
     played++;
     score++;
     notifyListeners();
+  }
+
+  void onLongPress(int x, int y) {
+    if (!started) {
+      putMines();
+      start();
+    }
+    print("long press: $x $y");
+    gridState[x][y] = hasFlag;
+    mines--;
+
+    played++;
+    score++;
+    notifyListeners();
+  }
+
+  void expand(int x, int y) {
+    moveUp(x, y);
+    moveDown(x, y);
+  }
+
+  void moveUp(int x, int y) {
+    bool reachEnd = false;
+    int line = x - 1;
+    while ((!reachEnd) && line >= 0) {
+      if (gridStateWithMines[line][y] is int) {
+        gridState[line][y] = gridStateWithMines[line][y];
+        reachEnd = true;
+      } else if (gridState[line][y] == hasFlag) {
+        reachEnd = true;
+      }
+      moveRight(line, y);
+      moveLeft(line, y);
+      line--;
+    }
+  }
+
+  void moveDown(int x, int y) {
+    bool reachEnd = false;
+    int line = x;
+    while ((!reachEnd) && line < rows) {
+      if (gridStateWithMines[line][y] is int) {
+        gridState[line][y] = gridStateWithMines[line][y];
+        reachEnd = true;
+      } else if (gridState[line][y] == hasFlag) {
+        reachEnd = true;
+      }
+      moveRight(line, y);
+      moveLeft(line, y);
+      line++;
+    }
+  }
+
+  void moveRight(int x, int y) {
+    bool keepForwarding = true;
+    int i = y;
+    while (keepForwarding) {
+      if (i == columns - 1) {
+        keepForwarding = false;
+      }
+      if (gridStateWithMines[x][i] == empty) {
+        gridState[x][i] = opened;
+      } else if (gridStateWithMines[x][i] is int) {
+        gridState[x][i] = gridStateWithMines[x][i];
+      } else if (gridState[x][i] == hasMine) {
+        keepForwarding = false;
+      } else if (gridState[x][i] == hasFlag) {
+        keepForwarding = false;
+      }
+      i++;
+    }
+  }
+
+  void moveLeft(int x, int y) {
+    bool keepForwarding = true;
+    int i = y;
+    while (keepForwarding) {
+      if (i == 0) {
+        keepForwarding = false;
+      }
+      if (gridStateWithMines[x][i] == empty) {
+        gridState[x][i] = opened;
+      } else if (gridStateWithMines[x][i] is int) {
+        gridState[x][i] = gridStateWithMines[x][i];
+        keepForwarding = false;
+      } else if (gridState[x][i] == hasMine) {
+        keepForwarding = false;
+      } else if (gridState[x][i] == hasFlag) {
+        keepForwarding = false;
+      }
+      i--;
+    }
   }
 
   void loseGame(int x, int y) {
@@ -168,7 +260,7 @@ class GameBloc extends ChangeNotifier {
     recalculateAdjacents(x + 1, y + 1); // bottomRight; 22
   }
 
-  void printGrid() {
+  void printGridWithMines() {
     for (int i = 0; i < rows; i++) {
       String currentLine = "";
       for (int j = 0; j < columns; j++) {

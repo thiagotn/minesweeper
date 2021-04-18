@@ -33,6 +33,14 @@ class Square extends StatelessWidget {
           decoration: buildBoxDecorationClicked(),
         );
         break;
+      case hasFlag:
+        return Container(
+          width: 25,
+          height: 25,
+          decoration: buildBoxDecorationClicked(),
+          child: SvgPicture.asset("assets/images/flag.svg"),
+        );
+        break;
       case hasMine:
         return Container(
           width: 25,
@@ -63,7 +71,7 @@ class Square extends StatelessWidget {
   getColor(value) {
     switch (value) {
       case 1:
-        return Colors.blue;
+        return Color(0xff000051);
         break;
       case 2:
         return Colors.green;

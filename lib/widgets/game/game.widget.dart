@@ -34,6 +34,9 @@ class Game extends StatelessWidget {
       );
     }
     return GestureDetector(
+      onLongPress: () {
+        bloc.onLongPress(x, y);
+      },
       onTap: () {
         bloc.onTap(x, y);
       },
