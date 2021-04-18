@@ -34,12 +34,8 @@ class Game extends StatelessWidget {
       );
     }
     return GestureDetector(
-      onLongPress: () {
-        bloc.onLongPress(x, y);
-      },
-      onTap: () {
-        bloc.onTap(x, y);
-      },
+      onLongPress: () => bloc.onLongPress(x, y),
+      onTap: () => bloc.onTap(x, y),
       child: GridTile(
         child: Square(x: x, y: y),
       ),

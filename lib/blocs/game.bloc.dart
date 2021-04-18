@@ -80,8 +80,13 @@ class GameBloc extends ChangeNotifier {
     } else {
       gridState[x][y] = gridStateWithMines[x][y];
     }
+
     played++;
     score++;
+
+    if (mines == 0) {
+      verifyResult();
+    }
     notifyListeners();
   }
 
@@ -96,6 +101,10 @@ class GameBloc extends ChangeNotifier {
 
     played++;
     score++;
+
+    if (mines == 0) {
+      verifyResult();
+    }
     notifyListeners();
   }
 
@@ -106,8 +115,9 @@ class GameBloc extends ChangeNotifier {
 
   void moveUp(int x, int y) {
     bool reachEnd = false;
-    int line = x - 1;
+    int line = x;
     while ((!reachEnd) && line >= 0) {
+      print("moving up line: $line");
       if (gridStateWithMines[line][y] is int) {
         gridState[line][y] = gridStateWithMines[line][y];
         reachEnd = true;
@@ -167,7 +177,6 @@ class GameBloc extends ChangeNotifier {
         gridState[x][i] = opened;
       } else if (gridStateWithMines[x][i] is int) {
         gridState[x][i] = gridStateWithMines[x][i];
-        keepForwarding = false;
       } else if (gridState[x][i] == hasMine) {
         keepForwarding = false;
       } else if (gridState[x][i] == hasFlag) {
@@ -186,6 +195,13 @@ class GameBloc extends ChangeNotifier {
     timer.cancel();
   }
 
+  void loseRound() {
+    lose = true;
+    started = false;
+    _mergeGrids();
+    timer.cancel();
+  }
+
   start() {
     started = true;
     timer = Timer.periodic(
@@ -199,6 +215,7 @@ class GameBloc extends ChangeNotifier {
     played = 0;
     score = 0;
     seconds = 0;
+    mines = 30;
     lose = false;
     started = false;
     gridState =
@@ -212,6 +229,26 @@ class GameBloc extends ChangeNotifier {
   updateTime() {
     seconds++;
     notifyListeners();
+  }
+
+  void verifyResult() {
+    // verifica se os numeros e vazios estão iguais ao gabarito...
+    bool win = true;
+    for (var i = 0; i < rows; i++) {
+      for (var j = 0; j < columns; j++) {
+        if ((gridState[i][j] == hasFlag) &&
+            (gridStateWithMines[i][j] == hasMine)) {
+          // flags and mines are equal. Win!
+        } else if (gridState[i][j] == gridStateWithMines[i][j]) {
+          // numbers and empty squares are equals. Win!
+        } else {
+          win = false;
+        }
+      }
+    }
+    if (!win) {
+      loseRound();
+    }
   }
 
   void _mergeGrids() {

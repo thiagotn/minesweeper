@@ -2,7 +2,7 @@
     package="com.example.minesweeper">
    <application
         android:label="minesweeper"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
