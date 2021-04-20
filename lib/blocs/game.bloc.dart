@@ -11,10 +11,11 @@ class GameBloc extends ChangeNotifier {
   int score = 0;
   bool lose = false;
   bool started = false;
+  bool win = false;
   // Default
   int rows = 16;
   int columns = 16;
-  int mines = 30;
+  int mines = 1;
   List<List<dynamic>> gridState;
   List<List<dynamic>> gridStateWithMines;
 
@@ -103,6 +104,7 @@ class GameBloc extends ChangeNotifier {
     score++;
 
     if (mines == 0) {
+      print("mines: $mines");
       verifyResult();
     }
     notifyListeners();
@@ -232,23 +234,27 @@ class GameBloc extends ChangeNotifier {
   }
 
   void verifyResult() {
+    print("verifyResult.");
+    bool winRound = false;
     // verifica se os numeros e vazios estão iguais ao gabarito...
-    bool win = true;
     for (var i = 0; i < rows; i++) {
       for (var j = 0; j < columns; j++) {
         if ((gridState[i][j] == hasFlag) &&
             (gridStateWithMines[i][j] == hasMine)) {
           // flags and mines are equal. Win!
-        } else if (gridState[i][j] == gridStateWithMines[i][j]) {
-          // numbers and empty squares are equals. Win!
-        } else {
-          win = false;
+          winRound = true;
+          print("verifyResult Win!.");
         }
       }
     }
+    win = winRound;
     if (!win) {
       loseRound();
+      return;
     }
+    win = true;
+    print("verifyResult Win?!: $win");
+    notifyListeners();
   }
 
   void _mergeGrids() {

@@ -24,10 +24,9 @@ class Game extends StatelessWidget {
 
   Widget _buildSquareItems(BuildContext context, int index) {
     GameBloc bloc = Provider.of<GameBloc>(context);
-    int gridStateLength = bloc.gridState.length;
     int x, y = 0;
-    x = (index / gridStateLength).floor();
-    y = (index % gridStateLength);
+    x = (index / bloc.rows).floor();
+    y = (index % bloc.columns);
     if (bloc.lose) {
       return GridTile(
         child: Square(x: x, y: y),
