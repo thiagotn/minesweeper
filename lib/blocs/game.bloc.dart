@@ -15,7 +15,7 @@ class GameBloc extends ChangeNotifier {
   // Default
   int rows = 16;
   int columns = 16;
-  int mines = 1;
+  int mines = 30;
   List<List<dynamic>> gridState;
   List<List<dynamic>> gridStateWithMines;
 
