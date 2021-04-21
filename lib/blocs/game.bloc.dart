@@ -198,7 +198,7 @@ class GameBloc extends ChangeNotifier {
     lose = false;
     started = false;
     Level.setLevel(MEDIUM);
-    _mergeGrids();
+    _mergeGridsForWinRound();
     timer.cancel();
   }
 
@@ -264,6 +264,16 @@ class GameBloc extends ChangeNotifier {
       for (var j = 0; j < Level.columns; j++) {
         if (gridStateWithMines[i][j] == hasMine) {
           gridState[i][j] = gridStateWithMines[i][j];
+        }
+      }
+    }
+  }
+
+  void _mergeGridsForWinRound() {
+    for (var i = 0; i < Level.rows; i++) {
+      for (var j = 0; j < Level.columns; j++) {
+        if (gridStateWithMines[i][j] == hasMine) {
+          gridState[i][j] = hasFlag;
         }
       }
     }
