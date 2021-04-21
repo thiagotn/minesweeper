@@ -12,38 +12,24 @@ class GameBloc extends ChangeNotifier {
   bool lose = false;
   bool started = false;
   bool win = false;
-  // Default
-  int rows = 16;
-  int columns = 16;
-  int mines = 30;
   List<List<dynamic>> gridState;
   List<List<dynamic>> gridStateWithMines;
 
   GameBloc() {
-    gridState =
-        List.generate(rows, (i) => List.generate(columns, (j) => empty));
-    gridStateWithMines =
-        List.generate(rows, (i) => List.generate(columns, (j) => empty));
-  }
-
-  List<List<dynamic>> clean(List<List<dynamic>> gridState) {
-    for (var i = 0; i < rows; i++) {
-      for (var j = 0; j < columns; j++) {
-        gridState[i][j] = empty;
-      }
-    }
-    return gridState;
+    gridState = List.generate(
+        Level.rows, (i) => List.generate(Level.columns, (j) => empty));
+    gridStateWithMines = List.generate(
+        Level.rows, (i) => List.generate(Level.columns, (j) => empty));
   }
 
   putMines() {
-    clean(gridStateWithMines);
-    for (int i = 0; i < mines; i++) {
+    for (int i = 0; i < Level.mines; i++) {
       int randomRowIndex;
       int randomColumnIndex;
 
       do {
-        randomRowIndex = _random(0, rows);
-        randomColumnIndex = _random(0, columns);
+        randomRowIndex = _random(0, Level.rows);
+        randomColumnIndex = _random(0, Level.columns);
       } while (
           gridStateWithMines[randomRowIndex][randomColumnIndex] == hasMine);
 
@@ -54,8 +40,8 @@ class GameBloc extends ChangeNotifier {
     // printGrid();
     // print("------------------ game with bombs end-----------------");
 
-    for (int i = 0; i < rows; i++) {
-      for (int j = 0; j < columns; j++) {
+    for (int i = 0; i < Level.rows; i++) {
+      for (int j = 0; j < Level.columns; j++) {
         if (gridStateWithMines[i][j] == hasMine) {
           fillAdjacents(i, j);
         }
@@ -85,7 +71,8 @@ class GameBloc extends ChangeNotifier {
     played++;
     score++;
 
-    if (mines == 0) {
+    print("Level.mines: ${Level.mines}");
+    if (Level.mines == 0) {
       verifyResult();
     }
     notifyListeners();
@@ -98,13 +85,13 @@ class GameBloc extends ChangeNotifier {
     }
     print("long press: $x $y");
     gridState[x][y] = hasFlag;
-    mines--;
+    Level.mines--;
 
     played++;
     score++;
 
-    if (mines == 0) {
-      print("mines: $mines");
+    print("Level.mines: ${Level.mines}");
+    if (Level.mines == 0) {
       verifyResult();
     }
     notifyListeners();
@@ -135,7 +122,7 @@ class GameBloc extends ChangeNotifier {
   void moveDown(int x, int y) {
     bool reachEnd = false;
     int line = x;
-    while ((!reachEnd) && line < rows) {
+    while ((!reachEnd) && line < Level.rows) {
       if (gridStateWithMines[line][y] is int) {
         gridState[line][y] = gridStateWithMines[line][y];
         reachEnd = true;
@@ -152,7 +139,7 @@ class GameBloc extends ChangeNotifier {
     bool keepForwarding = true;
     int i = y;
     while (keepForwarding) {
-      if (i == columns - 1) {
+      if (i == Level.columns - 1) {
         keepForwarding = false;
       }
       if (gridStateWithMines[x][i] == empty) {
@@ -193,6 +180,7 @@ class GameBloc extends ChangeNotifier {
     started = false;
     gridState[x][y] = hasMine;
     gridStateWithMines[x][y] = hasMine;
+    Level.setLevel(MEDIUM);
     _mergeGrids();
     timer.cancel();
   }
@@ -200,6 +188,16 @@ class GameBloc extends ChangeNotifier {
   void loseRound() {
     lose = true;
     started = false;
+    Level.setLevel(MEDIUM);
+    _mergeGrids();
+    timer.cancel();
+  }
+
+  void winRound() {
+    win = true;
+    lose = false;
+    started = false;
+    Level.setLevel(MEDIUM);
     _mergeGrids();
     timer.cancel();
   }
@@ -214,17 +212,20 @@ class GameBloc extends ChangeNotifier {
   }
 
   restart() {
+    print("restart called...");
     played = 0;
     score = 0;
     seconds = 0;
-    mines = 30;
+    Level.setLevel(MEDIUM);
     lose = false;
     started = false;
-    gridState =
-        List.generate(rows, (i) => List.generate(columns, (j) => empty));
-    gridStateWithMines =
-        List.generate(rows, (i) => List.generate(columns, (j) => empty));
-    putMines();
+    win = false;
+    if (timer != null) timer.cancel();
+    gridState = List.generate(
+        Level.rows, (i) => List.generate(Level.columns, (j) => empty));
+    gridStateWithMines = List.generate(
+        Level.rows, (i) => List.generate(Level.columns, (j) => empty));
+    print("restart finished...");
     notifyListeners();
   }
 
@@ -235,31 +236,32 @@ class GameBloc extends ChangeNotifier {
 
   void verifyResult() {
     print("verifyResult.");
-    bool winRound = false;
+    bool checkRound = false;
     // verifica se os numeros e vazios estão iguais ao gabarito...
-    for (var i = 0; i < rows; i++) {
-      for (var j = 0; j < columns; j++) {
+    for (var i = 0; i < Level.rows; i++) {
+      for (var j = 0; j < Level.columns; j++) {
         if ((gridState[i][j] == hasFlag) &&
             (gridStateWithMines[i][j] == hasMine)) {
-          // flags and mines are equal. Win!
-          winRound = true;
-          print("verifyResult Win!.");
+          checkRound = true;
+        } else if ((gridState[i][j] == opened) &&
+            (gridStateWithMines[i][j] == empty)) {
+          checkRound = true;
         }
       }
     }
-    win = winRound;
-    if (!win) {
+    if (!checkRound) {
       loseRound();
-      return;
+      print("verifyResult Win?!: $win");
+    } else {
+      winRound();
+      print("verifyResult Win?!: $win");
     }
-    win = true;
-    print("verifyResult Win?!: $win");
     notifyListeners();
   }
 
   void _mergeGrids() {
-    for (var i = 0; i < rows; i++) {
-      for (var j = 0; j < columns; j++) {
+    for (var i = 0; i < Level.rows; i++) {
+      for (var j = 0; j < Level.columns; j++) {
         if (gridStateWithMines[i][j] == hasMine) {
           gridState[i][j] = gridStateWithMines[i][j];
         }
@@ -276,7 +278,7 @@ class GameBloc extends ChangeNotifier {
   }
 
   void recalculateAdjacents(int x, int y) {
-    if ((x < 0 || y < 0) || (x > rows - 1 || y > columns - 1)) {
+    if ((x < 0 || y < 0) || (x > Level.rows - 1 || y > Level.columns - 1)) {
       print("invalid index: [$x][$y]");
       return;
     }
@@ -304,9 +306,9 @@ class GameBloc extends ChangeNotifier {
   }
 
   void printGridWithMines() {
-    for (int i = 0; i < rows; i++) {
+    for (int i = 0; i < Level.rows; i++) {
       String currentLine = "";
-      for (int j = 0; j < columns; j++) {
+      for (int j = 0; j < Level.columns; j++) {
         currentLine += " ${gridStateWithMines[i][j]}";
       }
       print(currentLine);
