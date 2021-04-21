@@ -5,11 +5,12 @@ AppBar gameAppBar() {
     title: Text(
       "Campo Minado",
       style: TextStyle(
-        fontSize: 34,
+        fontSize: 28,
         fontWeight: FontWeight.bold,
         fontFamily: 'BungeeShade',
       ),
     ),
+    actions: [],
     centerTitle: true,
   );
 }

@@ -71,7 +71,6 @@ class GameBloc extends ChangeNotifier {
     played++;
     score++;
 
-    print("Level.mines: ${Level.mines}");
     if (Level.mines == 0) {
       verifyResult();
     }
@@ -98,6 +97,8 @@ class GameBloc extends ChangeNotifier {
   }
 
   void expand(int x, int y) {
+    moveRight(x, y);
+    moveLeft(x, y);
     moveUp(x, y);
     moveDown(x, y);
   }
@@ -107,14 +108,15 @@ class GameBloc extends ChangeNotifier {
     int line = x;
     while ((!reachEnd) && line >= 0) {
       print("moving up line: $line");
+      moveRight(line, y);
+      moveLeft(line, y);
+
       if (gridStateWithMines[line][y] is int) {
         gridState[line][y] = gridStateWithMines[line][y];
         reachEnd = true;
       } else if (gridState[line][y] == hasFlag) {
         reachEnd = true;
       }
-      moveRight(line, y);
-      moveLeft(line, y);
       line--;
     }
   }
@@ -123,55 +125,91 @@ class GameBloc extends ChangeNotifier {
     bool reachEnd = false;
     int line = x;
     while ((!reachEnd) && line < Level.rows) {
-      if (gridStateWithMines[line][y] is int) {
+      var actual = gridStateWithMines[line][y];
+      moveRight(line, y);
+      moveLeft(line, y);
+
+      if (actual is int) {
         gridState[line][y] = gridStateWithMines[line][y];
         reachEnd = true;
       } else if (gridState[line][y] == hasFlag) {
         reachEnd = true;
       }
-      moveRight(line, y);
-      moveLeft(line, y);
       line++;
     }
   }
 
   void moveRight(int x, int y) {
+    print("moveRight $x $y");
     bool keepForwarding = true;
     int i = y;
     while (keepForwarding) {
       if (i == Level.columns - 1) {
         keepForwarding = false;
       }
-      if (gridStateWithMines[x][i] == empty) {
+      var actual = gridStateWithMines[x][i];
+      var previous = (i - 1 >= 0) ? gridStateWithMines[x][i - 1] : '';
+      if (actual == empty) {
         gridState[x][i] = opened;
-      } else if (gridStateWithMines[x][i] is int) {
-        gridState[x][i] = gridStateWithMines[x][i];
-      } else if (gridState[x][i] == hasMine) {
+      } else if (actual is int &&
+          ((previous is int) || (previous == hasMine))) {
         keepForwarding = false;
-      } else if (gridState[x][i] == hasFlag) {
+      } else if (actual is int) {
+        gridState[x][i] = gridStateWithMines[x][i];
+      } else if (actual == hasMine) {
+        keepForwarding = false;
+      } else if (actual == hasFlag) {
         keepForwarding = false;
       }
+      verifyUpAndDown(x, i);
       i++;
     }
   }
 
   void moveLeft(int x, int y) {
+    print("moveLeft $x $y");
     bool keepForwarding = true;
     int i = y;
     while (keepForwarding) {
       if (i == 0) {
         keepForwarding = false;
       }
-      if (gridStateWithMines[x][i] == empty) {
+      var actual = gridStateWithMines[x][i];
+      var previous = (i + 1 >= 0) ? gridStateWithMines[x][i + 1] : '';
+      if (actual == empty) {
         gridState[x][i] = opened;
-      } else if (gridStateWithMines[x][i] is int) {
-        gridState[x][i] = gridStateWithMines[x][i];
-      } else if (gridState[x][i] == hasMine) {
+      } else if (actual is int &&
+          ((previous is int) || (previous == hasMine))) {
         keepForwarding = false;
-      } else if (gridState[x][i] == hasFlag) {
+      } else if (actual is int) {
+        gridState[x][i] = gridStateWithMines[x][i];
+      } else if (actual == hasMine) {
+        keepForwarding = false;
+      } else if (actual == hasFlag) {
         keepForwarding = false;
       }
+      verifyUpAndDown(x, i);
       i--;
+    }
+  }
+
+  void verifyUpAndDown(int x, int y) {
+    print("verifyUpAndDown: $x $y");
+    if ((x - 1) >= 1) {
+      var actual = gridStateWithMines[x - 1][y];
+      if (actual == empty) {
+        gridStateWithMines[x - 1][y] = opened;
+      } else if (gridStateWithMines[x - 1][y] is int) {
+        gridState[x - 1][y] = gridStateWithMines[x - 1][y];
+      }
+    }
+    if ((x + 1) < Level.rows) {
+      var actual = gridStateWithMines[x + 1][y];
+      if (actual == empty) {
+        gridStateWithMines[x + 1][y] = opened;
+      } else if (gridStateWithMines[x + 1][y] is int) {
+        gridState[x + 1][y] = gridStateWithMines[x + 1][y];
+      }
     }
   }
 
@@ -211,6 +249,11 @@ class GameBloc extends ChangeNotifier {
     notifyListeners();
   }
 
+  updateTime() {
+    seconds++;
+    notifyListeners();
+  }
+
   restart() {
     print("restart called...");
     played = 0;
@@ -226,11 +269,6 @@ class GameBloc extends ChangeNotifier {
     gridStateWithMines = List.generate(
         Level.rows, (i) => List.generate(Level.columns, (j) => empty));
     print("restart finished...");
-    notifyListeners();
-  }
-
-  updateTime() {
-    seconds++;
     notifyListeners();
   }
 
