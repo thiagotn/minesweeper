@@ -4,7 +4,7 @@ const brightness = Brightness.light;
 const primaryColor = Colors.grey;
 const accentColor = const Color(0xFFFFFFFF);
 const primarySwatch = Colors.grey;
-const fontFamily = 'BungeeShade';
+const fontFamily = 'TickingTimebombBB';
 
 ThemeData appTheme() {
   return ThemeData(
@@ -58,12 +58,12 @@ ThemeData appTheme() {
 
 BoxDecoration buildBoxDecorationScoreBoard() {
   return BoxDecoration(
-    color: Colors.red.shade900,
+    color: Colors.black,
     border: Border(
-      top: BorderSide(color: Colors.red.shade50, width: 3.0),
-      left: BorderSide(color: Colors.red.shade50, width: 3.0),
-      bottom: BorderSide(color: Colors.red.shade300, width: 3.0),
-      right: BorderSide(color: Colors.red.shade300, width: 3.0),
+      top: BorderSide(color: Colors.grey, width: 3.0),
+      left: BorderSide(color: Colors.grey, width: 3.0),
+      bottom: BorderSide(color: Colors.white, width: 3.0),
+      right: BorderSide(color: Colors.white, width: 3.0),
     ),
   );
 }

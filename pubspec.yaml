@@ -94,3 +94,6 @@ flutter:
     - family: BungeeShade
       fonts:
         - asset: assets/fonts/BungeeShade-Regular.ttf
+    - family: TickingTimebombBB
+      fonts:
+        - asset: assets/fonts/TickingTimebombBB.ttf

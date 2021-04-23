@@ -40,6 +40,7 @@ class GameActions extends StatelessWidget {
                             style: TextStyle(
                                 fontSize: 22,
                                 fontWeight: FontWeight.bold,
+                                fontFamily: 'TickingTimebombBB',
                                 color: bloc.win ? Colors.green : Colors.black),
                           ),
                         ),

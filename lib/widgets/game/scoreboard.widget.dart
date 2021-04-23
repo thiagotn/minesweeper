@@ -34,7 +34,10 @@ class Scoreboard extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          SvgPicture.asset("assets/images/mine.svg"),
+                          SvgPicture.asset(
+                            "assets/images/mine.svg",
+                            color: Colors.red,
+                          ),
                         ],
                       ),
                       Column(
@@ -44,8 +47,10 @@ class Scoreboard extends StatelessWidget {
                           Text(
                             "${Level.mines}",
                             style: TextStyle(
-                              fontSize: 22,
+                              fontSize: 36,
+                              color: Colors.red,
                               fontWeight: FontWeight.bold,
+                              fontFamily: 'TickingTimebombBB',
                             ),
                           ),
                         ],
@@ -82,7 +87,10 @@ class Scoreboard extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          SvgPicture.asset("assets/images/timer.svg"),
+                          SvgPicture.asset(
+                            "assets/images/timer.svg",
+                            color: Colors.red,
+                          ),
                         ],
                       ),
                       Column(
@@ -92,8 +100,10 @@ class Scoreboard extends StatelessWidget {
                           Text(
                             "${_printDuration(Duration(seconds: bloc.seconds.toInt()))}",
                             style: TextStyle(
-                              fontSize: 20,
+                              fontSize: 36,
+                              color: Colors.red,
                               fontWeight: FontWeight.bold,
+                              fontFamily: 'TickingTimebombBB',
                             ),
                           )
                         ],

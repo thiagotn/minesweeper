@@ -41,7 +41,7 @@ class SplashPage extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 28,
                       fontWeight: FontWeight.bold,
-                      fontFamily: 'BungeeShade',
+                      fontFamily: 'TickingTimebombBB',
                     ),
                   ),
                 )
