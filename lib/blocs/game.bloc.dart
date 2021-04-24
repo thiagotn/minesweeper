@@ -346,6 +346,7 @@ class GameBloc extends ChangeNotifier {
   }
 
   void _mergeGrids() {
+    if (gridState.isEmpty || gridStateWithMines.isEmpty) return;
     for (var i = 0; i < rows; i++) {
       for (var j = 0; j < columns; j++) {
         if (gridStateWithMines[i][j] == hasMine) {

@@ -46,7 +46,7 @@ class Scoreboard extends StatelessWidget {
                           Text(
                             "${bloc.mines}",
                             style: TextStyle(
-                              fontSize: 36,
+                              fontSize: 28,
                               color: Colors.red,
                               fontWeight: FontWeight.bold,
                               fontFamily: 'TickingTimebombBB',
@@ -102,7 +102,7 @@ class Scoreboard extends StatelessWidget {
                           Text(
                             "${_printDuration(Duration(seconds: bloc.seconds.toInt()))}",
                             style: TextStyle(
-                              fontSize: 36,
+                              fontSize: 28,
                               color: Colors.red,
                               fontWeight: FontWeight.bold,
                               fontFamily: 'TickingTimebombBB',
