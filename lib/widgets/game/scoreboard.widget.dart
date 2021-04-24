@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:minesweeper/blocs/game.bloc.dart';
-import 'package:minesweeper/blocs/game.config.dart';
 import 'package:minesweeper/themes/theme.dart';
 import 'package:provider/provider.dart';
 
@@ -45,7 +44,7 @@ class Scoreboard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Text(
-                            "${Level.mines}",
+                            "${bloc.mines}",
                             style: TextStyle(
                               fontSize: 36,
                               color: Colors.red,
@@ -62,12 +61,15 @@ class Scoreboard extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Container(
-                alignment: Alignment.center,
-                decoration: buildBoxDecorationOut(),
-                child: SvgPicture.asset((bloc.lose)
-                    ? "assets/images/face-sad.svg"
-                    : "assets/images/face-smile.svg"),
+              child: GestureDetector(
+                onTap: () => bloc.restart(),
+                child: Container(
+                  alignment: Alignment.center,
+                  decoration: buildBoxDecorationOut(),
+                  child: SvgPicture.asset((bloc.lose)
+                      ? "assets/images/face-sad.svg"
+                      : "assets/images/face-smile.svg"),
+                ),
               ),
             ),
             Padding(

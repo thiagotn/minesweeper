@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:minesweeper/blocs/game.bloc.dart';
-import 'package:minesweeper/blocs/game.config.dart';
 import 'package:minesweeper/themes/theme.dart';
 import 'package:minesweeper/widgets/game/square.widget.dart';
 import 'package:provider/provider.dart';
@@ -8,6 +7,7 @@ import 'package:provider/provider.dart';
 class Game extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    GameBloc bloc = Provider.of<GameBloc>(context);
     return Padding(
       padding: const EdgeInsets.only(right: 8.0, left: 8.0),
       child: Container(
@@ -16,10 +16,10 @@ class Game extends StatelessWidget {
         child: GridView.builder(
           shrinkWrap: true,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: Level.rows,
+            crossAxisCount: bloc.rows,
           ),
           itemBuilder: _buildSquareItems,
-          itemCount: Level.rows * Level.columns,
+          itemCount: bloc.rows * bloc.columns,
         ),
       ),
     );
@@ -28,8 +28,8 @@ class Game extends StatelessWidget {
   Widget _buildSquareItems(BuildContext context, int index) {
     GameBloc bloc = Provider.of<GameBloc>(context);
     int x, y = 0;
-    x = (index / Level.rows).floor();
-    y = (index % Level.columns);
+    x = (index / bloc.rows).floor();
+    y = (index % bloc.columns);
     if (bloc.lose) {
       return GridTile(
         child: Square(x: x, y: y),

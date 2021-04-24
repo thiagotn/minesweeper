@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:minesweeper/pages/home.page.dart';
 import 'package:minesweeper/themes/theme.dart';
-
-import 'game.page.dart';
 
 class SplashPage extends StatelessWidget {
   Future delay(context) async {
@@ -13,7 +12,7 @@ class SplashPage extends StatelessWidget {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => GamePage(),
+          builder: (context) => HomePage(),
         ),
       );
     });
