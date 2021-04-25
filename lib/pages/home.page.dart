@@ -19,7 +19,7 @@ class HomePage extends StatelessWidget {
           children: [
             Container(
               width: 220,
-              decoration: buildBoxDecorationOut(),
+              decoration: buildBoxDecorationButton(),
               child: TextButton(
                 onPressed: () => {
                   print("fácil"),
@@ -47,7 +47,7 @@ class HomePage extends StatelessWidget {
             ),
             Container(
               width: 220,
-              decoration: buildBoxDecorationOut(),
+              decoration: buildBoxDecorationButton(),
               child: TextButton(
                 onPressed: () => {
                   print("intermediário"),
@@ -75,7 +75,7 @@ class HomePage extends StatelessWidget {
             ),
             Container(
               width: 220,
-              decoration: buildBoxDecorationOut(),
+              decoration: buildBoxDecorationButton(),
               child: TextButton(
                 onPressed: () => {
                   print("difícil"),

@@ -103,3 +103,15 @@ BoxDecoration buildBoxDecorationOut() {
     ),
   );
 }
+
+BoxDecoration buildBoxDecorationButton() {
+  return BoxDecoration(
+    color: Color(0xffbcbcbc),
+    border: Border(
+      top: BorderSide(color: Colors.white, width: 3.0),
+      left: BorderSide(color: Colors.white, width: 3.0),
+      bottom: BorderSide(color: Colors.grey, width: 3.0),
+      right: BorderSide(color: Colors.grey, width: 3.0),
+    ),
+  );
+}
