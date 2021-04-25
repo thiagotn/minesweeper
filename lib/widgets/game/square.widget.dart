@@ -57,7 +57,7 @@ class Square extends StatelessWidget {
             child: Text(
               "$value",
               style: TextStyle(
-                fontSize: 18,
+                fontSize: 14,
                 color: getColor(value),
                 fontWeight: FontWeight.bold,
               ),

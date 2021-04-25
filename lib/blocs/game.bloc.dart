@@ -3,7 +3,6 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:minesweeper/blocs/game.config.dart';
-// import 'package:minesweeper/blocs/game.config.dart';
 
 const String EASY = "EASY";
 const String MEDIUM = "MEDIUM";
@@ -26,6 +25,7 @@ class GameBloc extends ChangeNotifier {
   List<List<dynamic>> gridState;
   List<List<dynamic>> gridStateWithMines;
 
+  String currentLevel;
   int rows = 16;
   int columns = 16;
   int mines = 30;
@@ -33,7 +33,7 @@ class GameBloc extends ChangeNotifier {
   select(String level) {
     switch (level) {
       case EASY:
-        started = false;
+        currentLevel = EASY;
         rows = easyRows;
         columns = easyColumns;
         mines = easyMines;
@@ -41,7 +41,7 @@ class GameBloc extends ChangeNotifier {
         notifyListeners();
         break;
       case MEDIUM:
-        started = false;
+        currentLevel = MEDIUM;
         rows = mediumRows;
         columns = mediumColumns;
         mines = mediumMines;
@@ -49,7 +49,7 @@ class GameBloc extends ChangeNotifier {
         notifyListeners();
         break;
       case HARD:
-        started = false;
+        currentLevel = HARD;
         rows = hardRows;
         columns = hardColumns;
         mines = hardMines;
@@ -57,7 +57,7 @@ class GameBloc extends ChangeNotifier {
         notifyListeners();
         break;
       default:
-        started = false;
+        currentLevel = MEDIUM;
         rows = mediumRows;
         columns = mediumColumns;
         mines = mediumMines;
@@ -72,6 +72,8 @@ class GameBloc extends ChangeNotifier {
         List.generate(rows, (i) => List.generate(columns, (j) => empty));
     gridStateWithMines =
         List.generate(rows, (i) => List.generate(columns, (j) => empty));
+    print("gridState.length: ${gridState.length}");
+    print("gridStateWithMines.length: ${gridStateWithMines.length}");
   }
 
   putMines() {
@@ -271,14 +273,14 @@ class GameBloc extends ChangeNotifier {
     gridState[x][y] = hasMine;
     gridStateWithMines[x][y] = hasMine;
     _mergeGrids();
-    timer.cancel();
+    timer?.cancel();
   }
 
   void loseRound() {
     lose = true;
     started = false;
     _mergeGrids();
-    timer.cancel();
+    timer?.cancel();
   }
 
   void winRound() {
@@ -286,7 +288,7 @@ class GameBloc extends ChangeNotifier {
     lose = false;
     started = false;
     _mergeGridsForWinRound();
-    timer.cancel();
+    timer?.cancel();
   }
 
   start() {
@@ -308,6 +310,7 @@ class GameBloc extends ChangeNotifier {
     played = 0;
     score = 0;
     seconds = 0;
+    select(currentLevel);
     lose = false;
     started = false;
     win = false;
@@ -346,7 +349,10 @@ class GameBloc extends ChangeNotifier {
   }
 
   void _mergeGrids() {
-    if (gridState.isEmpty || gridStateWithMines.isEmpty) return;
+    if (gridState == null ||
+        gridState.isEmpty ||
+        gridStateWithMines == null ||
+        gridStateWithMines.isEmpty) return;
     for (var i = 0; i < rows; i++) {
       for (var j = 0; j < columns; j++) {
         if (gridStateWithMines[i][j] == hasMine) {
