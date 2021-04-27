@@ -37,6 +37,9 @@ class GameBloc extends ChangeNotifier {
         rows = easyRows;
         columns = easyColumns;
         mines = easyMines;
+        started = false;
+        seconds = 0;
+        timer?.cancel();
         createGrids();
         notifyListeners();
         break;
@@ -45,6 +48,9 @@ class GameBloc extends ChangeNotifier {
         rows = mediumRows;
         columns = mediumColumns;
         mines = mediumMines;
+        started = false;
+        seconds = 0;
+        timer?.cancel();
         createGrids();
         notifyListeners();
         break;
@@ -53,6 +59,9 @@ class GameBloc extends ChangeNotifier {
         rows = hardRows;
         columns = hardColumns;
         mines = hardMines;
+        started = false;
+        seconds = 0;
+        timer?.cancel();
         createGrids();
         notifyListeners();
         break;
@@ -61,6 +70,9 @@ class GameBloc extends ChangeNotifier {
         rows = mediumRows;
         columns = mediumColumns;
         mines = mediumMines;
+        started = false;
+        seconds = 0;
+        timer?.cancel();
         createGrids();
         notifyListeners();
         break;
@@ -314,7 +326,7 @@ class GameBloc extends ChangeNotifier {
     lose = false;
     started = false;
     win = false;
-    if (timer != null) timer.cancel();
+    timer?.cancel();
     gridState =
         List.generate(rows, (i) => List.generate(columns, (j) => empty));
     gridStateWithMines =
