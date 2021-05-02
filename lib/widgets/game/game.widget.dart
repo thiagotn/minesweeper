@@ -8,8 +8,6 @@ class Game extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     GameBloc bloc = Provider.of<GameBloc>(context);
-    double width = MediaQuery.of(context).size.width - 8.0;
-    double height = MediaQuery.of(context).size.height - 40.0;
     return Padding(
       padding: const EdgeInsets.only(right: 8.0, left: 8.0),
       child: Container(
