@@ -156,8 +156,17 @@ class GameBloc extends ChangeNotifier {
       start();
     }
     print("long press: $x $y");
-    gridState[x][y] = hasFlag;
-    mines--;
+    if (gridState[x][y] == hasFlag) {
+      if (gridStateWithMines[x][y] == hasMine) {
+        loseGame(x, y);
+      } else {
+        gridState[x][y] = gridStateWithMines[x][y];
+      }
+      mines++;
+    } else {
+      gridState[x][y] = hasFlag;
+      mines--;
+    }
 
     played++;
     score++;
@@ -248,7 +257,7 @@ class GameBloc extends ChangeNotifier {
         keepForwarding = false;
       }
       var actual = gridStateWithMines[x][i];
-      var previous = (i + 1 >= 0) ? gridStateWithMines[x][i + 1] : '';
+      var previous = (i + 1 < columns) ? gridStateWithMines[x][i + 1] : '';
       if (actual == empty) {
         gridState[x][i] = opened;
       } else if (actual is int &&
