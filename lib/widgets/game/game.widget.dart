@@ -14,6 +14,7 @@ class Game extends StatelessWidget {
         alignment: Alignment.center,
         decoration: buildBoxDecorationIn(),
         child: GridView.builder(
+          physics: ScrollPhysics(),
           shrinkWrap: true,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: bloc.rows,
