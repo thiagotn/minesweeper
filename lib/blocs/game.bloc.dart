@@ -33,50 +33,57 @@ class GameBloc extends ChangeNotifier {
   select(String level) {
     switch (level) {
       case EASY:
-        currentLevel = EASY;
-        rows = easyRows;
-        columns = easyColumns;
-        mines = easyMines;
-        started = false;
-        seconds = 0;
-        timer?.cancel();
-        createGrids();
-        notifyListeners();
+        resetRound(
+          EASY,
+          easyRows,
+          easyColumns,
+          easyMines,
+        );
         break;
       case MEDIUM:
-        currentLevel = MEDIUM;
-        rows = mediumRows;
-        columns = mediumColumns;
-        mines = mediumMines;
-        started = false;
-        seconds = 0;
-        timer?.cancel();
-        createGrids();
-        notifyListeners();
+        resetRound(
+          MEDIUM,
+          mediumRows,
+          mediumColumns,
+          mediumMines,
+        );
         break;
       case HARD:
-        currentLevel = HARD;
-        rows = hardRows;
-        columns = hardColumns;
-        mines = hardMines;
-        started = false;
-        seconds = 0;
-        timer?.cancel();
-        createGrids();
-        notifyListeners();
+        resetRound(
+          HARD,
+          hardRows,
+          hardColumns,
+          hardMines,
+        );
         break;
       default:
-        currentLevel = MEDIUM;
-        rows = mediumRows;
-        columns = mediumColumns;
-        mines = mediumMines;
-        started = false;
-        seconds = 0;
-        timer?.cancel();
-        createGrids();
-        notifyListeners();
+        resetRound(
+          MEDIUM,
+          mediumRows,
+          mediumColumns,
+          mediumMines,
+        );
         break;
     }
+  }
+
+  void resetRound(
+    String level,
+    int levelRows,
+    int levelColumns,
+    int levelMines,
+  ) {
+    currentLevel = level;
+    rows = levelRows;
+    columns = levelColumns;
+    mines = levelMines;
+    started = false;
+    win = false;
+    lose = false;
+    seconds = 0;
+    timer?.cancel();
+    createGrids();
+    notifyListeners();
   }
 
   void createGrids() {
