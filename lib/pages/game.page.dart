@@ -12,7 +12,9 @@ class GamePage extends StatelessWidget {
       body: ListView(
         children: [
           Scoreboard(),
-          Game(),
+          InteractiveViewer(
+            child: Game(),
+          ),
           GameActions(),
         ],
       ),
