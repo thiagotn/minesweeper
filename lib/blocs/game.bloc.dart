@@ -7,6 +7,7 @@ import 'package:minesweeper/blocs/game.config.dart';
 const String EASY = "EASY";
 const String MEDIUM = "MEDIUM";
 const String HARD = "HARD";
+const String HARD2 = "HARD2";
 
 // Square Values
 const String empty = "-";
@@ -54,6 +55,14 @@ class GameBloc extends ChangeNotifier {
           hardRows,
           hardColumns,
           hardMines,
+        );
+        break;
+      case HARD2:
+        resetRound(
+          HARD2,
+          hard2Rows,
+          hard2Columns,
+          hard2Mines,
         );
         break;
       default:

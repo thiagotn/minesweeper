@@ -98,6 +98,34 @@ class HomePage extends StatelessWidget {
                 ),
               ),
             ),
+            SizedBox(
+              height: 20,
+            ),
+            Container(
+              width: 220,
+              decoration: buildBoxDecorationButton(),
+              child: TextButton(
+                onPressed: () => {
+                  print("difícil2"),
+                  bloc.select(HARD2),
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => GamePage(),
+                    ),
+                  ),
+                },
+                child: Text(
+                  "Dificil 2 ($hard2Rows X $hard2Columns)",
+                  style: TextStyle(
+                    fontSize: 22,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'TickingTimebombBB',
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),

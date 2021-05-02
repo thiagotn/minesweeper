@@ -9,3 +9,7 @@ const int mediumMines = 30;
 const int hardRows = 24;
 const int hardColumns = 24;
 const int hardMines = 30;
+
+const int hard2Rows = 30;
+const int hard2Columns = 30;
+const int hard2Mines = 60;
