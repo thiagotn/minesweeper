@@ -20,6 +20,18 @@ It is guaranteed that the first square you open won't contain a mine, so you can
 
 Credits: https://cardgames.io/minesweeper/#rules
 
+## Android
+
+### Generate appBundle
+
+``` bash
+flutter clean
+
+flutter packages get
+
+flutter build appbundle
+```
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
