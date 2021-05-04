@@ -1,0 +1,2 @@
+Jogo clássico de Campo Minado feito em Flutter. 
+Selecione a dificuldade e se divirta.

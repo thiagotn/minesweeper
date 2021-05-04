@@ -30,6 +30,8 @@ flutter clean
 flutter packages get
 
 flutter build appbundle
+
+fastlane beta
 ```
 
 ## Getting Started

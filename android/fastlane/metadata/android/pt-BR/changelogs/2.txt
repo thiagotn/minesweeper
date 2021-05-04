@@ -1,0 +1,3 @@
+Campo Minado (beta) desenvolvido em Flutter. 
+Jogue de acordo com o nível selecionado.
+Caso encontre algum bug, não deixe de registrar no github do projeto.
