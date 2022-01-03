@@ -1,6 +1,8 @@
 # minesweeper
 
-Flutter Game - Minesweeper inspired by: https://minesweeper.online/pt/game/639574193
+Flutter Game - Android Version published: https://play.google.com/store/apps/details?id=dev.thiagotn.minesweeper&hl=pt&gl=US
+
+Inspired by: https://minesweeper.online/pt/game/639574193
 
 Assets from: https://iconduck.com
 
