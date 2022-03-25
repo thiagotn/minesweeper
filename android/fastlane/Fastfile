@@ -25,6 +25,7 @@ platform :android do
   lane :beta do
     # gradle(task: "clean assembleRelease")
     # crashlytics
+    sh "flutter build appbundle"
     gradle(task: 'assemble', build_type: 'Release')
     upload_to_play_store(track: 'beta', aab: "../build/app/outputs/bundle/release/app-release.aab")
   
