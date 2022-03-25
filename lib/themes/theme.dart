@@ -51,7 +51,6 @@ ThemeData appTheme() {
       ),
     ),
     primaryColor: primaryColor,
-    accentColor: accentColor,
     primarySwatch: primarySwatch,
   );
 }
@@ -70,7 +69,7 @@ BoxDecoration buildBoxDecorationScoreBoard() {
 
 BoxDecoration buildBoxDecorationClicked() {
   return BoxDecoration(
-    color: Color(0xffbcbcbc),
+    color: Color.fromARGB(255, 245, 237, 237),
     border: Border(
       // top: BorderSide(color: Colors.black, width: 0.5),
       // left: BorderSide(color: Colors.black, width: 0.5),

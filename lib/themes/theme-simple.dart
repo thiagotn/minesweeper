@@ -9,7 +9,6 @@ ThemeData appThemeSimple() {
   return ThemeData(
     brightness: brightness,
     primaryColor: primaryColor,
-    accentColor: accentColor,
     primarySwatch: primarySwatch,
   );
 }
