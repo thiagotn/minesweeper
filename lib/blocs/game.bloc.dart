@@ -419,7 +419,7 @@ class GameBloc extends ChangeNotifier {
 
   void recalculateAdjacents(int x, int y) {
     if ((x < 0 || y < 0) || (x > rows - 1 || y > columns - 1)) {
-      print("invalid index: [$x][$y]");
+      // print("invalid index: [$x][$y]");
       return;
     }
 
