@@ -9,6 +9,7 @@ void main() {
     test("Call to 'onTap' gonna create two Grids for the Game", () {
       int x = 5;
       int y = 5;
+      gameBloc.createGrids();
       gameBloc.onTap(x, y);
       expect(gameBloc.gridState.length, 16);
       expect(gameBloc.gridStateWithMines.length, 16);
