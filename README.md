@@ -36,6 +36,12 @@ flutter build appbundle
 fastlane beta
 ```
 
+## Web
+
+``` bash
+flutter run -d chrome
+```
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
