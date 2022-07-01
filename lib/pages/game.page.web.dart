@@ -8,7 +8,7 @@ class GamePageWeb extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       body: Center(
-        child: Text("Acessando via Web"),
+        child: Text("[TODO] Acessando via Web"),
       ),
     );
   }
