@@ -1,7 +1,9 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:minesweeper/blocs/game.bloc.dart';
 import 'package:minesweeper/blocs/game.config.dart';
 import 'package:minesweeper/pages/game.page.dart';
+import 'package:minesweeper/pages/game.page.web.dart';
 import 'package:minesweeper/themes/theme.dart';
 import 'package:minesweeper/widgets/game/app-bar.widget.dart';
 import 'package:provider/provider.dart';
@@ -27,7 +29,8 @@ class HomePage extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => GamePage(),
+                      builder: (context) =>
+                          (kIsWeb) ? GamePageWeb() : GamePage(),
                     ),
                   ),
                 },
