@@ -25,7 +25,7 @@ class HomePage extends StatelessWidget {
               child: TextButton(
                 onPressed: () => {
                   print("fácil"),
-                  bloc.select(EASY),
+                  bloc.select(Level.EASY),
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -54,7 +54,7 @@ class HomePage extends StatelessWidget {
               child: TextButton(
                 onPressed: () => {
                   print("intermediário"),
-                  bloc.select(MEDIUM),
+                  bloc.select(Level.MEDIUM),
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -82,7 +82,7 @@ class HomePage extends StatelessWidget {
               child: TextButton(
                 onPressed: () => {
                   print("difícil"),
-                  bloc.select(HARD),
+                  bloc.select(Level.HARD),
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -110,7 +110,7 @@ class HomePage extends StatelessWidget {
               child: TextButton(
                 onPressed: () => {
                   print("difícil2"),
-                  bloc.select(HARD2),
+                  bloc.select(Level.HARD2),
                   Navigator.push(
                     context,
                     MaterialPageRoute(

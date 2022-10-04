@@ -4,10 +4,12 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:minesweeper/blocs/game.config.dart';
 
-const String EASY = "EASY";
-const String MEDIUM = "MEDIUM";
-const String HARD = "HARD";
-const String HARD2 = "HARD2";
+enum Level {
+  EASY,
+  MEDIUM,
+  HARD,
+  HARD2,
+}
 
 // Square Values
 const String empty = "-";
@@ -26,40 +28,40 @@ class GameBloc extends ChangeNotifier {
   List<List<dynamic>> gridState;
   List<List<dynamic>> gridStateWithMines;
 
-  String currentLevel;
+  Level currentLevel;
   int rows = 16;
   int columns = 16;
   int mines = 30;
 
-  select(String level) {
+  select(Level level) {
     switch (level) {
-      case EASY:
+      case Level.EASY:
         resetRound(
-          EASY,
+          Level.EASY,
           easyRows,
           easyColumns,
           easyMines,
         );
         break;
-      case MEDIUM:
+      case Level.MEDIUM:
         resetRound(
-          MEDIUM,
+          Level.MEDIUM,
           mediumRows,
           mediumColumns,
           mediumMines,
         );
         break;
-      case HARD:
+      case Level.HARD:
         resetRound(
-          HARD,
+          Level.HARD,
           hardRows,
           hardColumns,
           hardMines,
         );
         break;
-      case HARD2:
+      case Level.HARD2:
         resetRound(
-          HARD2,
+          Level.HARD2,
           hard2Rows,
           hard2Columns,
           hard2Mines,
@@ -67,7 +69,7 @@ class GameBloc extends ChangeNotifier {
         break;
       default:
         resetRound(
-          MEDIUM,
+          Level.MEDIUM,
           mediumRows,
           mediumColumns,
           mediumMines,
@@ -77,7 +79,7 @@ class GameBloc extends ChangeNotifier {
   }
 
   void resetRound(
-    String level,
+    Level level,
     int levelRows,
     int levelColumns,
     int levelMines,
