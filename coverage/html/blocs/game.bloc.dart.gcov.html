@@ -31,13 +31,13 @@
             <td class="headerValue">lcov.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntry">78</td>
-            <td class="headerCovTableEntry">238</td>
-            <td class="headerCovTableEntryLo">32.8 %</td>
+            <td class="headerCovTableEntry">26</td>
+            <td class="headerCovTableEntry">236</td>
+            <td class="headerCovTableEntryLo">11.0 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2022-10-04 20:35:24</td>
+            <td class="headerValue">2022-10-04 21:01:58</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -98,7 +98,7 @@
 <a name="36"><span class="lineNum">      36 </span><span class="lineCov">          1 :   select(Level level) {</span></a>
 <a name="37"><span class="lineNum">      37 </span>            :     switch (level) {</a>
 <a name="38"><span class="lineNum">      38 </span><span class="lineCov">          1 :       case Level.EASY:</span></a>
-<a name="39"><span class="lineNum">      39 </span><span class="lineNoCov">          0 :         resetRound(</span></a>
+<a name="39"><span class="lineNum">      39 </span><span class="lineCov">          1 :         resetRound(</span></a>
 <a name="40"><span class="lineNum">      40 </span>            :           Level.EASY,</a>
 <a name="41"><span class="lineNum">      41 </span>            :           easyRows,</a>
 <a name="42"><span class="lineNum">      42 </span>            :           easyColumns,</a>
@@ -113,16 +113,16 @@
 <a name="51"><span class="lineNum">      51 </span>            :           mediumMines,</a>
 <a name="52"><span class="lineNum">      52 </span>            :         );</a>
 <a name="53"><span class="lineNum">      53 </span>            :         break;</a>
-<a name="54"><span class="lineNum">      54 </span><span class="lineNoCov">          0 :       case Level.HARD:</span></a>
-<a name="55"><span class="lineNum">      55 </span><span class="lineNoCov">          0 :         resetRound(</span></a>
+<a name="54"><span class="lineNum">      54 </span><span class="lineCov">          1 :       case Level.HARD:</span></a>
+<a name="55"><span class="lineNum">      55 </span><span class="lineCov">          1 :         resetRound(</span></a>
 <a name="56"><span class="lineNum">      56 </span>            :           Level.HARD,</a>
 <a name="57"><span class="lineNum">      57 </span>            :           hardRows,</a>
 <a name="58"><span class="lineNum">      58 </span>            :           hardColumns,</a>
 <a name="59"><span class="lineNum">      59 </span>            :           hardMines,</a>
 <a name="60"><span class="lineNum">      60 </span>            :         );</a>
 <a name="61"><span class="lineNum">      61 </span>            :         break;</a>
-<a name="62"><span class="lineNum">      62 </span><span class="lineNoCov">          0 :       case Level.HARD2:</span></a>
-<a name="63"><span class="lineNum">      63 </span><span class="lineNoCov">          0 :         resetRound(</span></a>
+<a name="62"><span class="lineNum">      62 </span><span class="lineCov">          1 :       case Level.HARD2:</span></a>
+<a name="63"><span class="lineNum">      63 </span><span class="lineCov">          1 :         resetRound(</span></a>
 <a name="64"><span class="lineNum">      64 </span>            :           Level.HARD2,</a>
 <a name="65"><span class="lineNum">      65 </span>            :           hard2Rows,</a>
 <a name="66"><span class="lineNum">      66 </span>            :           hard2Columns,</a>
@@ -164,63 +164,63 @@
 <a name="102"><span class="lineNum">     102 </span><span class="lineCov">          6 :         List.generate(rows, (i) =&gt; List.generate(columns, (j) =&gt; empty));</span></a>
 <a name="103"><span class="lineNum">     103 </span><span class="lineCov">          1 :     gridStateWithMines =</span></a>
 <a name="104"><span class="lineNum">     104 </span><span class="lineCov">          6 :         List.generate(rows, (i) =&gt; List.generate(columns, (j) =&gt; empty));</span></a>
-<a name="105"><span class="lineNum">     105 </span><span class="lineCov">          4 :     print(&quot;gridState.length: ${gridState.length}&quot;);</span></a>
-<a name="106"><span class="lineNum">     106 </span><span class="lineCov">          4 :     print(&quot;gridStateWithMines.length: ${gridStateWithMines.length}&quot;);</span></a>
+<a name="105"><span class="lineNum">     105 </span>            :     // debugPrint(&quot;gridState.length: ${gridState.length}&quot;);</a>
+<a name="106"><span class="lineNum">     106 </span>            :     // debugPrint(&quot;gridStateWithMines.length: ${gridStateWithMines.length}&quot;);</a>
 <a name="107"><span class="lineNum">     107 </span>            :   }</a>
 <a name="108"><span class="lineNum">     108 </span>            : </a>
-<a name="109"><span class="lineNum">     109 </span><span class="lineCov">          1 :   putMines() {</span></a>
-<a name="110"><span class="lineNum">     110 </span><span class="lineCov">          3 :     for (int i = 0; i &lt; mines; i++) {</span></a>
+<a name="109"><span class="lineNum">     109 </span><span class="lineNoCov">          0 :   putMines() {</span></a>
+<a name="110"><span class="lineNum">     110 </span><span class="lineNoCov">          0 :     for (int i = 0; i &lt; mines; i++) {</span></a>
 <a name="111"><span class="lineNum">     111 </span>            :       int randomRowIndex;</a>
 <a name="112"><span class="lineNum">     112 </span>            :       int randomColumnIndex;</a>
 <a name="113"><span class="lineNum">     113 </span>            : </a>
 <a name="114"><span class="lineNum">     114 </span>            :       do {</a>
-<a name="115"><span class="lineNum">     115 </span><span class="lineCov">          2 :         randomRowIndex = _random(0, rows);</span></a>
-<a name="116"><span class="lineNum">     116 </span><span class="lineCov">          2 :         randomColumnIndex = _random(0, columns);</span></a>
+<a name="115"><span class="lineNum">     115 </span><span class="lineNoCov">          0 :         randomRowIndex = _random(0, rows);</span></a>
+<a name="116"><span class="lineNum">     116 </span><span class="lineNoCov">          0 :         randomColumnIndex = _random(0, columns);</span></a>
 <a name="117"><span class="lineNum">     117 </span>            :       } while (</a>
-<a name="118"><span class="lineNum">     118 </span><span class="lineCov">          4 :           gridStateWithMines[randomRowIndex][randomColumnIndex] == hasMine);</span></a>
+<a name="118"><span class="lineNum">     118 </span><span class="lineNoCov">          0 :           gridStateWithMines[randomRowIndex][randomColumnIndex] == hasMine);</span></a>
 <a name="119"><span class="lineNum">     119 </span>            : </a>
-<a name="120"><span class="lineNum">     120 </span><span class="lineCov">          3 :       gridStateWithMines[randomRowIndex][randomColumnIndex] = hasMine;</span></a>
+<a name="120"><span class="lineNum">     120 </span><span class="lineNoCov">          0 :       gridStateWithMines[randomRowIndex][randomColumnIndex] = hasMine;</span></a>
 <a name="121"><span class="lineNum">     121 </span>            :     }</a>
 <a name="122"><span class="lineNum">     122 </span>            : </a>
 <a name="123"><span class="lineNum">     123 </span>            :     // print(&quot;------------------ game with bombs start-----------------&quot;);</a>
 <a name="124"><span class="lineNum">     124 </span>            :     // printGrid();</a>
 <a name="125"><span class="lineNum">     125 </span>            :     // print(&quot;------------------ game with bombs end-----------------&quot;);</a>
 <a name="126"><span class="lineNum">     126 </span>            : </a>
-<a name="127"><span class="lineNum">     127 </span><span class="lineCov">          3 :     for (int i = 0; i &lt; rows; i++) {</span></a>
-<a name="128"><span class="lineNum">     128 </span><span class="lineCov">          3 :       for (int j = 0; j &lt; columns; j++) {</span></a>
-<a name="129"><span class="lineNum">     129 </span><span class="lineCov">          4 :         if (gridStateWithMines[i][j] == hasMine) {</span></a>
-<a name="130"><span class="lineNum">     130 </span><span class="lineCov">          1 :           fillAdjacents(i, j);</span></a>
+<a name="127"><span class="lineNum">     127 </span><span class="lineNoCov">          0 :     for (int i = 0; i &lt; rows; i++) {</span></a>
+<a name="128"><span class="lineNum">     128 </span><span class="lineNoCov">          0 :       for (int j = 0; j &lt; columns; j++) {</span></a>
+<a name="129"><span class="lineNum">     129 </span><span class="lineNoCov">          0 :         if (gridStateWithMines[i][j] == hasMine) {</span></a>
+<a name="130"><span class="lineNum">     130 </span><span class="lineNoCov">          0 :           fillAdjacents(i, j);</span></a>
 <a name="131"><span class="lineNum">     131 </span>            :         }</a>
 <a name="132"><span class="lineNum">     132 </span>            :       }</a>
 <a name="133"><span class="lineNum">     133 </span>            :     }</a>
 <a name="134"><span class="lineNum">     134 </span>            : </a>
-<a name="135"><span class="lineNum">     135 </span><span class="lineCov">          1 :     print(&quot;------------------ game with bombs and tips start-----------------&quot;);</span></a>
-<a name="136"><span class="lineNum">     136 </span><span class="lineCov">          1 :     printGridWithMines();</span></a>
-<a name="137"><span class="lineNum">     137 </span><span class="lineCov">          1 :     print(&quot;------------------ game with bombs and tips ended-----------------&quot;);</span></a>
+<a name="135"><span class="lineNum">     135 </span><span class="lineNoCov">          0 :     print(&quot;------------------ game with bombs and tips start-----------------&quot;);</span></a>
+<a name="136"><span class="lineNum">     136 </span><span class="lineNoCov">          0 :     printGridWithMines();</span></a>
+<a name="137"><span class="lineNum">     137 </span><span class="lineNoCov">          0 :     print(&quot;------------------ game with bombs and tips ended-----------------&quot;);</span></a>
 <a name="138"><span class="lineNum">     138 </span>            :   }</a>
 <a name="139"><span class="lineNum">     139 </span>            : </a>
-<a name="140"><span class="lineNum">     140 </span><span class="lineCov">          1 :   void onTap(int x, int y) {</span></a>
-<a name="141"><span class="lineNum">     141 </span><span class="lineCov">          1 :     if (!started) {</span></a>
-<a name="142"><span class="lineNum">     142 </span><span class="lineCov">          1 :       putMines();</span></a>
-<a name="143"><span class="lineNum">     143 </span><span class="lineCov">          1 :       start();</span></a>
+<a name="140"><span class="lineNum">     140 </span><span class="lineNoCov">          0 :   void onTap(int x, int y) {</span></a>
+<a name="141"><span class="lineNum">     141 </span><span class="lineNoCov">          0 :     if (!started) {</span></a>
+<a name="142"><span class="lineNum">     142 </span><span class="lineNoCov">          0 :       putMines();</span></a>
+<a name="143"><span class="lineNum">     143 </span><span class="lineNoCov">          0 :       start();</span></a>
 <a name="144"><span class="lineNum">     144 </span>            :     }</a>
-<a name="145"><span class="lineNum">     145 </span><span class="lineCov">          2 :     print(&quot;tapped: $x $y&quot;);</span></a>
-<a name="146"><span class="lineNum">     146 </span><span class="lineCov">          4 :     if (gridStateWithMines[x][y] == empty) {</span></a>
+<a name="145"><span class="lineNum">     145 </span><span class="lineNoCov">          0 :     print(&quot;tapped: $x $y&quot;);</span></a>
+<a name="146"><span class="lineNum">     146 </span><span class="lineNoCov">          0 :     if (gridStateWithMines[x][y] == empty) {</span></a>
 <a name="147"><span class="lineNum">     147 </span><span class="lineNoCov">          0 :       gridState[x][y] = opened;</span></a>
 <a name="148"><span class="lineNum">     148 </span><span class="lineNoCov">          0 :       expand(x, y);</span></a>
-<a name="149"><span class="lineNum">     149 </span><span class="lineCov">          4 :     } else if (gridStateWithMines[x][y] == hasMine) {</span></a>
+<a name="149"><span class="lineNum">     149 </span><span class="lineNoCov">          0 :     } else if (gridStateWithMines[x][y] == hasMine) {</span></a>
 <a name="150"><span class="lineNum">     150 </span><span class="lineNoCov">          0 :       loseGame(x, y);</span></a>
 <a name="151"><span class="lineNum">     151 </span>            :     } else {</a>
-<a name="152"><span class="lineNum">     152 </span><span class="lineCov">          6 :       gridState[x][y] = gridStateWithMines[x][y];</span></a>
+<a name="152"><span class="lineNum">     152 </span><span class="lineNoCov">          0 :       gridState[x][y] = gridStateWithMines[x][y];</span></a>
 <a name="153"><span class="lineNum">     153 </span>            :     }</a>
 <a name="154"><span class="lineNum">     154 </span>            : </a>
-<a name="155"><span class="lineNum">     155 </span><span class="lineCov">          2 :     played++;</span></a>
-<a name="156"><span class="lineNum">     156 </span><span class="lineCov">          2 :     score++;</span></a>
+<a name="155"><span class="lineNum">     155 </span><span class="lineNoCov">          0 :     played++;</span></a>
+<a name="156"><span class="lineNum">     156 </span><span class="lineNoCov">          0 :     score++;</span></a>
 <a name="157"><span class="lineNum">     157 </span>            : </a>
-<a name="158"><span class="lineNum">     158 </span><span class="lineCov">          2 :     if (mines == 0) {</span></a>
+<a name="158"><span class="lineNum">     158 </span><span class="lineNoCov">          0 :     if (mines == 0) {</span></a>
 <a name="159"><span class="lineNum">     159 </span><span class="lineNoCov">          0 :       verifyResult();</span></a>
 <a name="160"><span class="lineNum">     160 </span>            :     }</a>
-<a name="161"><span class="lineNum">     161 </span><span class="lineCov">          1 :     notifyListeners();</span></a>
+<a name="161"><span class="lineNum">     161 </span><span class="lineNoCov">          0 :     notifyListeners();</span></a>
 <a name="162"><span class="lineNum">     162 </span>            :   }</a>
 <a name="163"><span class="lineNum">     163 </span>            : </a>
 <a name="164"><span class="lineNum">     164 </span><span class="lineNoCov">          0 :   void onLongPress(int x, int y) {</span></a>
@@ -392,13 +392,13 @@
 <a name="330"><span class="lineNum">     330 </span><span class="lineNoCov">          0 :     timer?.cancel();</span></a>
 <a name="331"><span class="lineNum">     331 </span>            :   }</a>
 <a name="332"><span class="lineNum">     332 </span>            : </a>
-<a name="333"><span class="lineNum">     333 </span><span class="lineCov">          1 :   start() {</span></a>
-<a name="334"><span class="lineNum">     334 </span><span class="lineCov">          1 :     started = true;</span></a>
-<a name="335"><span class="lineNum">     335 </span><span class="lineCov">          2 :     timer = Timer.periodic(</span></a>
-<a name="336"><span class="lineNum">     336 </span><span class="lineCov">          1 :       Duration(seconds: 1),</span></a>
+<a name="333"><span class="lineNum">     333 </span><span class="lineNoCov">          0 :   start() {</span></a>
+<a name="334"><span class="lineNum">     334 </span><span class="lineNoCov">          0 :     started = true;</span></a>
+<a name="335"><span class="lineNum">     335 </span><span class="lineNoCov">          0 :     timer = Timer.periodic(</span></a>
+<a name="336"><span class="lineNum">     336 </span><span class="lineNoCov">          0 :       Duration(seconds: 1),</span></a>
 <a name="337"><span class="lineNum">     337 </span><span class="lineNoCov">          0 :       (Timer t) =&gt; updateTime(),</span></a>
 <a name="338"><span class="lineNum">     338 </span>            :     );</a>
-<a name="339"><span class="lineNum">     339 </span><span class="lineCov">          1 :     notifyListeners();</span></a>
+<a name="339"><span class="lineNum">     339 </span><span class="lineNoCov">          0 :     notifyListeners();</span></a>
 <a name="340"><span class="lineNum">     340 </span>            :   }</a>
 <a name="341"><span class="lineNum">     341 </span>            : </a>
 <a name="342"><span class="lineNum">     342 </span><span class="lineNoCov">          0 :   updateTime() {</span></a>
@@ -473,49 +473,49 @@
 <a name="411"><span class="lineNum">     411 </span>            :     }</a>
 <a name="412"><span class="lineNum">     412 </span>            :   }</a>
 <a name="413"><span class="lineNum">     413 </span>            : </a>
-<a name="414"><span class="lineNum">     414 </span><span class="lineCov">          1 :   int _random(int min, int max) {</span></a>
+<a name="414"><span class="lineNum">     414 </span><span class="lineNoCov">          0 :   int _random(int min, int max) {</span></a>
 <a name="415"><span class="lineNum">     415 </span>            :     Random rnd;</a>
 <a name="416"><span class="lineNum">     416 </span>            :     int min = 0;</a>
-<a name="417"><span class="lineNum">     417 </span><span class="lineCov">          1 :     rnd = new Random();</span></a>
-<a name="418"><span class="lineNum">     418 </span><span class="lineCov">          3 :     var result = min + rnd.nextInt(max - min);</span></a>
+<a name="417"><span class="lineNum">     417 </span><span class="lineNoCov">          0 :     rnd = new Random();</span></a>
+<a name="418"><span class="lineNum">     418 </span><span class="lineNoCov">          0 :     var result = min + rnd.nextInt(max - min);</span></a>
 <a name="419"><span class="lineNum">     419 </span>            :     return result;</a>
 <a name="420"><span class="lineNum">     420 </span>            :   }</a>
 <a name="421"><span class="lineNum">     421 </span>            : </a>
-<a name="422"><span class="lineNum">     422 </span><span class="lineCov">          1 :   void recalculateAdjacents(int x, int y) {</span></a>
-<a name="423"><span class="lineNum">     423 </span><span class="lineCov">          8 :     if ((x &lt; 0 || y &lt; 0) || (x &gt; rows - 1 || y &gt; columns - 1)) {</span></a>
+<a name="422"><span class="lineNum">     422 </span><span class="lineNoCov">          0 :   void recalculateAdjacents(int x, int y) {</span></a>
+<a name="423"><span class="lineNum">     423 </span><span class="lineNoCov">          0 :     if ((x &lt; 0 || y &lt; 0) || (x &gt; rows - 1 || y &gt; columns - 1)) {</span></a>
 <a name="424"><span class="lineNum">     424 </span>            :       // print(&quot;invalid index: [$x][$y]&quot;);</a>
 <a name="425"><span class="lineNum">     425 </span>            :       return;</a>
 <a name="426"><span class="lineNum">     426 </span>            :     }</a>
 <a name="427"><span class="lineNum">     427 </span>            : </a>
-<a name="428"><span class="lineNum">     428 </span><span class="lineCov">          3 :     var targetValue = gridStateWithMines[x][y];</span></a>
-<a name="429"><span class="lineNum">     429 </span><span class="lineCov">          1 :     if (targetValue == empty) {</span></a>
-<a name="430"><span class="lineNum">     430 </span><span class="lineCov">          3 :       gridStateWithMines[x][y] = 1;</span></a>
-<a name="431"><span class="lineNum">     431 </span><span class="lineCov">          1 :     } else if (targetValue != hasMine) {</span></a>
-<a name="432"><span class="lineNum">     432 </span><span class="lineCov">          7 :       gridStateWithMines[x][y] = gridStateWithMines[x][y] + 1;</span></a>
+<a name="428"><span class="lineNum">     428 </span><span class="lineNoCov">          0 :     var targetValue = gridStateWithMines[x][y];</span></a>
+<a name="429"><span class="lineNum">     429 </span><span class="lineNoCov">          0 :     if (targetValue == empty) {</span></a>
+<a name="430"><span class="lineNum">     430 </span><span class="lineNoCov">          0 :       gridStateWithMines[x][y] = 1;</span></a>
+<a name="431"><span class="lineNum">     431 </span><span class="lineNoCov">          0 :     } else if (targetValue != hasMine) {</span></a>
+<a name="432"><span class="lineNum">     432 </span><span class="lineNoCov">          0 :       gridStateWithMines[x][y] = gridStateWithMines[x][y] + 1;</span></a>
 <a name="433"><span class="lineNum">     433 </span>            :     }</a>
 <a name="434"><span class="lineNum">     434 </span>            :   }</a>
 <a name="435"><span class="lineNum">     435 </span>            : </a>
-<a name="436"><span class="lineNum">     436 </span><span class="lineCov">          1 :   void fillAdjacents(int x, int y) {</span></a>
-<a name="437"><span class="lineNum">     437 </span><span class="lineCov">          1 :     recalculateAdjacents(x, y);</span></a>
-<a name="438"><span class="lineNum">     438 </span><span class="lineCov">          2 :     recalculateAdjacents(x, y - 1); // left; 10</span></a>
-<a name="439"><span class="lineNum">     439 </span><span class="lineCov">          2 :     recalculateAdjacents(x, y + 1); // right; 12</span></a>
+<a name="436"><span class="lineNum">     436 </span><span class="lineNoCov">          0 :   void fillAdjacents(int x, int y) {</span></a>
+<a name="437"><span class="lineNum">     437 </span><span class="lineNoCov">          0 :     recalculateAdjacents(x, y);</span></a>
+<a name="438"><span class="lineNum">     438 </span><span class="lineNoCov">          0 :     recalculateAdjacents(x, y - 1); // left; 10</span></a>
+<a name="439"><span class="lineNum">     439 </span><span class="lineNoCov">          0 :     recalculateAdjacents(x, y + 1); // right; 12</span></a>
 <a name="440"><span class="lineNum">     440 </span>            : </a>
-<a name="441"><span class="lineNum">     441 </span><span class="lineCov">          2 :     recalculateAdjacents(x - 1, y); // top; 01</span></a>
-<a name="442"><span class="lineNum">     442 </span><span class="lineCov">          3 :     recalculateAdjacents(x - 1, y - 1); // topLeft; 00</span></a>
-<a name="443"><span class="lineNum">     443 </span><span class="lineCov">          3 :     recalculateAdjacents(x - 1, y + 1); // topRight; 02</span></a>
+<a name="441"><span class="lineNum">     441 </span><span class="lineNoCov">          0 :     recalculateAdjacents(x - 1, y); // top; 01</span></a>
+<a name="442"><span class="lineNum">     442 </span><span class="lineNoCov">          0 :     recalculateAdjacents(x - 1, y - 1); // topLeft; 00</span></a>
+<a name="443"><span class="lineNum">     443 </span><span class="lineNoCov">          0 :     recalculateAdjacents(x - 1, y + 1); // topRight; 02</span></a>
 <a name="444"><span class="lineNum">     444 </span>            : </a>
-<a name="445"><span class="lineNum">     445 </span><span class="lineCov">          2 :     recalculateAdjacents(x + 1, y); // bottom; 21</span></a>
-<a name="446"><span class="lineNum">     446 </span><span class="lineCov">          3 :     recalculateAdjacents(x + 1, y - 1); // bottomLeft; 20</span></a>
-<a name="447"><span class="lineNum">     447 </span><span class="lineCov">          3 :     recalculateAdjacents(x + 1, y + 1); // bottomRight; 22</span></a>
+<a name="445"><span class="lineNum">     445 </span><span class="lineNoCov">          0 :     recalculateAdjacents(x + 1, y); // bottom; 21</span></a>
+<a name="446"><span class="lineNum">     446 </span><span class="lineNoCov">          0 :     recalculateAdjacents(x + 1, y - 1); // bottomLeft; 20</span></a>
+<a name="447"><span class="lineNum">     447 </span><span class="lineNoCov">          0 :     recalculateAdjacents(x + 1, y + 1); // bottomRight; 22</span></a>
 <a name="448"><span class="lineNum">     448 </span>            :   }</a>
 <a name="449"><span class="lineNum">     449 </span>            : </a>
-<a name="450"><span class="lineNum">     450 </span><span class="lineCov">          1 :   void printGridWithMines() {</span></a>
-<a name="451"><span class="lineNum">     451 </span><span class="lineCov">          3 :     for (int i = 0; i &lt; rows; i++) {</span></a>
+<a name="450"><span class="lineNum">     450 </span><span class="lineNoCov">          0 :   void printGridWithMines() {</span></a>
+<a name="451"><span class="lineNum">     451 </span><span class="lineNoCov">          0 :     for (int i = 0; i &lt; rows; i++) {</span></a>
 <a name="452"><span class="lineNum">     452 </span>            :       String currentLine = &quot;&quot;;</a>
-<a name="453"><span class="lineNum">     453 </span><span class="lineCov">          3 :       for (int j = 0; j &lt; columns; j++) {</span></a>
-<a name="454"><span class="lineNum">     454 </span><span class="lineCov">          5 :         currentLine += &quot; ${gridStateWithMines[i][j]}&quot;;</span></a>
+<a name="453"><span class="lineNum">     453 </span><span class="lineNoCov">          0 :       for (int j = 0; j &lt; columns; j++) {</span></a>
+<a name="454"><span class="lineNum">     454 </span><span class="lineNoCov">          0 :         currentLine += &quot; ${gridStateWithMines[i][j]}&quot;;</span></a>
 <a name="455"><span class="lineNum">     455 </span>            :       }</a>
-<a name="456"><span class="lineNum">     456 </span><span class="lineCov">          1 :       print(currentLine);</span></a>
+<a name="456"><span class="lineNum">     456 </span><span class="lineNoCov">          0 :       print(currentLine);</span></a>
 <a name="457"><span class="lineNum">     457 </span>            :     }</a>
 <a name="458"><span class="lineNum">     458 </span>            :   }</a>
 <a name="459"><span class="lineNum">     459 </span>            : }</a>

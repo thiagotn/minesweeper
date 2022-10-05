@@ -102,8 +102,8 @@ class GameBloc extends ChangeNotifier {
         List.generate(rows, (i) => List.generate(columns, (j) => empty));
     gridStateWithMines =
         List.generate(rows, (i) => List.generate(columns, (j) => empty));
-    print("gridState.length: ${gridState.length}");
-    print("gridStateWithMines.length: ${gridStateWithMines.length}");
+    // debugPrint("gridState.length: ${gridState.length}");
+    // debugPrint("gridStateWithMines.length: ${gridStateWithMines.length}");
   }
 
   putMines() {
