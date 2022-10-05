@@ -1,6 +1,8 @@
 # minesweeper
 
-Flutter Game - Android Version published: https://play.google.com/store/apps/details?id=dev.thiagotn.minesweeper&hl=pt&gl=US
+Minesweeper Flutter Game
+
+[Available at Google Play](https://play.google.com/store/apps/details?id=dev.thiagotn.minesweeper&hl=pt&gl=US)
 
 ![thumbnail](./game.jpg)
 
