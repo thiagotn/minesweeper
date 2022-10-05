@@ -2,6 +2,10 @@
 
 Flutter Game - Android Version published: https://play.google.com/store/apps/details?id=dev.thiagotn.minesweeper&hl=pt&gl=US
 
+![thumbnail](./game.jpg)
+
+[Video of game in action available here](https://www.youtube.com/watch?v=N59XndvWwQo).
+
 Inspired by: https://minesweeper.online/pt/game/639574193
 
 Assets from: https://iconduck.com
