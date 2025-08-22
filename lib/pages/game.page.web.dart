@@ -25,7 +25,7 @@ class GamePageWeb extends StatelessWidget {
                 ),
                 Expanded(
                   flex: 1,
-                  child: ListView(
+                  child: Column(
                     children: [
                       Scoreboard(),
                       GameActions(),
