@@ -9,8 +9,8 @@ class Square extends StatelessWidget {
   final int y;
 
   const Square({
-    @required this.x,
-    @required this.y,
+        required this.x,
+    required this.y,
   });
 
   @override

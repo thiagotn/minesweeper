@@ -10,43 +10,43 @@ ThemeData appTheme() {
   return ThemeData(
     brightness: brightness,
     textTheme: new TextTheme(
-      bodyText1: new TextStyle(
+      bodyLarge: new TextStyle(
         fontFamily: fontFamily,
       ),
-      bodyText2: TextStyle(
+      bodyMedium: TextStyle(
         fontFamily: fontFamily,
       ),
-      button: TextStyle(
+      labelLarge: TextStyle(
         fontFamily: fontFamily,
       ),
-      caption: TextStyle(
+      bodySmall: TextStyle(
         fontFamily: fontFamily,
       ),
-      headline6: TextStyle(
+      titleLarge: TextStyle(
         fontFamily: fontFamily,
       ),
-      headline5: TextStyle(
+      headlineSmall: TextStyle(
         fontFamily: fontFamily,
       ),
-      headline4: TextStyle(
+      headlineMedium: TextStyle(
         fontFamily: fontFamily,
       ),
-      headline3: TextStyle(
+      displaySmall: TextStyle(
         fontFamily: fontFamily,
       ),
-      headline2: TextStyle(
+      displayMedium: TextStyle(
         fontFamily: fontFamily,
       ),
-      headline1: TextStyle(
+      displayLarge: TextStyle(
         fontFamily: fontFamily,
       ),
-      overline: TextStyle(
+      labelSmall: TextStyle(
         fontFamily: fontFamily,
       ),
-      subtitle2: TextStyle(
+      titleSmall: TextStyle(
         fontFamily: fontFamily,
       ),
-      subtitle1: TextStyle(
+      titleMedium: TextStyle(
         fontFamily: fontFamily,
       ),
     ),

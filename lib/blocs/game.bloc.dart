@@ -18,17 +18,17 @@ const String hasFlag = "F";
 const String opened = "0";
 
 class GameBloc extends ChangeNotifier {
-  Timer timer;
+    Timer? timer;
   double seconds = 0;
   int played = 0;
   int score = 0;
   bool lose = false;
   bool started = false;
   bool win = false;
-  List<List<dynamic>> gridState;
-  List<List<dynamic>> gridStateWithMines;
+  late List<List<dynamic>> gridState;
+  late List<List<dynamic>> gridStateWithMines;
 
-  Level currentLevel;
+  late Level currentLevel;
   int rows = 16;
   int columns = 16;
   int mines = 30;

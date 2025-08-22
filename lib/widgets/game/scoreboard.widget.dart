@@ -29,27 +29,32 @@ class Scoreboard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          SvgPicture.asset(
-                            "assets/images/mine.svg",
-                            color: Colors.red,
-                          ),
-                        ],
+                      Expanded(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            SvgPicture.asset(
+                              "assets/images/mine.svg",
+                              color: Colors.red,
+                              height: 24.0,
+                            ),
+                          ],
+                        ),
                       ),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text(
-                            "${bloc.mines}",
-                            style: TextStyle(
-                              fontSize: 28,
-                              color: Colors.red,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: 'TickingTimebombBB',
+                          Expanded(
+                            child: Text(
+                              "${bloc.mines}",
+                              style: TextStyle(
+                                fontSize: 28,
+                                color: Colors.red,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'TickingTimebombBB',
+                              ),
                             ),
                           ),
                         ],
@@ -66,9 +71,11 @@ class Scoreboard extends StatelessWidget {
                 child: Container(
                   alignment: Alignment.center,
                   decoration: buildBoxDecorationOut(),
-                  child: SvgPicture.asset((bloc.lose)
-                      ? "assets/images/face-sad.svg"
-                      : "assets/images/face-smile.svg"),
+                  child: SvgPicture.asset(
+                    (bloc.lose)
+                        ? "assets/images/face-sad.svg"
+                        : "assets/images/face-smile.svg",
+                  ),
                 ),
               ),
             ),
@@ -85,29 +92,34 @@ class Scoreboard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          SvgPicture.asset(
-                            "assets/images/timer.svg",
-                            color: Colors.red,
-                          ),
-                        ],
+                      Expanded(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            SvgPicture.asset(
+                              "assets/images/timer.svg",
+                              color: Colors.red,
+                              height: 24.0,
+                            ),
+                          ],
+                        ),
                       ),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text(
-                            "${_printDuration(Duration(seconds: bloc.seconds.toInt()))}",
-                            style: TextStyle(
-                              fontSize: 28,
-                              color: Colors.red,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: 'TickingTimebombBB',
+                          Expanded(
+                            child: Text(
+                              "${_printDuration(Duration(seconds: bloc.seconds.toInt()))}",
+                              style: TextStyle(
+                                fontSize: 28,
+                                color: Colors.red,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'TickingTimebombBB',
+                              ),
                             ),
-                          )
+                          ),
                         ],
                       ),
                     ],
