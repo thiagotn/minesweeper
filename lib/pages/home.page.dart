@@ -58,7 +58,8 @@ class HomePage extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => GamePage(),
+                      builder: (context) =>
+                          (kIsWeb) ? GamePageWeb() : GamePage(),
                     ),
                   ),
                 },
@@ -86,7 +87,8 @@ class HomePage extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => GamePage(),
+                      builder: (context) =>
+                          (kIsWeb) ? GamePageWeb() : GamePage(),
                     ),
                   ),
                 },
@@ -114,7 +116,8 @@ class HomePage extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => GamePage(),
+                      builder: (context) =>
+                          (kIsWeb) ? GamePageWeb() : GamePage(),
                     ),
                   ),
                 },
