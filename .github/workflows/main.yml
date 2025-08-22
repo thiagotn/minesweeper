@@ -14,7 +14,7 @@ jobs:
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.35.0'
+          flutter-version: "3.35.0"
 
       - name: Install dependencies
         run: flutter pub get
@@ -22,16 +22,17 @@ jobs:
       - name: Run tests
         run: flutter test
 
-      - name: Install CocoaPods dependencies
-        working-directory: ios
-        run: pod install
+      # - name: Install CocoaPods dependencies
+      #   working-directory: ios
+      #   run: pod install
+      #
+      # - name: Build IPA for iOS
+      #   run: |
+      #     flutter build ipa --release --export-options-plist=ios/ExportOptions.plist
+      #
+      # - name: Upload IPA artifact
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: ios-ipa
+      #     path: build/ios/ipa/*.ipa
 
-      - name: Build IPA for iOS
-        run: |
-          flutter build ipa --release --export-options-plist=ios/ExportOptions.plist
-
-      - name: Upload IPA artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: ios-ipa
-          path: build/ios/ipa/*.ipa
