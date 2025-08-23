@@ -17,6 +17,7 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: 'stable' # Or the channel you use
+          cache: true # Enable caching for faster builds
 
       - name: Install dependencies
         run: flutter pub get
