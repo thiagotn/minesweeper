@@ -21,7 +21,7 @@ jobs:
         run: flutter pub get
 
       - name: Build Web
-        run: flutter build web --release --web-renderer html --base-href /minesweeper/
+        run: flutter build web --release --base-href /minesweeper/
 
       - name: Verify build output
         run: ls -R build/web
