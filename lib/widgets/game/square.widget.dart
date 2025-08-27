@@ -7,57 +7,62 @@ import 'package:provider/provider.dart';
 class Square extends StatelessWidget {
   final int x;
   final int y;
+  final double? size;
 
   const Square({
         required this.x,
     required this.y,
+    this.size,
   });
 
   @override
   Widget build(BuildContext context) {
     GameBloc bloc = Provider.of<GameBloc>(context);
     var value = bloc.gridState[x][y];
+    final squareSize = size ?? 25.0; // Default to 25 if no size provided
+    final fontSize = (bloc.currentLevel == Level.HARD2) ? squareSize * 0.44 : squareSize * 0.56;
+    
     switch (value) {
       case empty:
         return Container(
-          width: 25,
-          height: 25,
+          width: squareSize,
+          height: squareSize,
           decoration: buildBoxDecorationOut(),
         );
         break;
       case opened:
         return Container(
-          width: 25,
-          height: 25,
+          width: squareSize,
+          height: squareSize,
           decoration: buildBoxDecorationClicked(),
         );
         break;
       case hasFlag:
         return Container(
-          width: 25,
-          height: 25,
+          width: squareSize,
+          height: squareSize,
           decoration: buildBoxDecorationClicked(),
           child: SvgPicture.asset("assets/images/flag.svg"),
         );
         break;
       case hasMine:
         return Container(
-          width: 25,
-          height: 25,
+          width: squareSize,
+          height: squareSize,
           decoration: buildBoxDecorationIn(),
           child: SvgPicture.asset("assets/images/mine.svg"),
         );
         break;
       default:
         return Container(
-          width: 25,
-          height: 25,
+          width: squareSize,
+          height: squareSize,
           decoration: buildBoxDecorationClicked(),
           child: Center(
             child: Text(
               "$value",
               style: TextStyle(
-                fontSize: (bloc.currentLevel == Level.HARD2) ? 11 : 14,
+                fontSize: fontSize,
                 color: getColor(value),
                 fontWeight: FontWeight.bold,
               ),

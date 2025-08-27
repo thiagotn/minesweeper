@@ -21,11 +21,14 @@ class GamePageWeb extends StatelessWidget {
               children: [
                 Expanded(
                   flex: 3,
-                  child: GameWeb(),
+                  child: Center(
+                    child: GameWeb(),
+                  ),
                 ),
                 Expanded(
                   flex: 1,
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Scoreboard(),
                       GameActions(),
