@@ -13,32 +13,50 @@ class GameWeb extends StatelessWidget {
       child: Container(
         alignment: Alignment.center,
         decoration: buildBoxDecorationIn(),
-        child: GridView.builder(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: bloc.columns,
-          ),
-          itemBuilder: _buildSquareItems,
-          itemCount: bloc.rows * bloc.columns,
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            // Calculate available space for the grid (accounting for padding)
+            final availableWidth = constraints.maxWidth - 16.0; // Container padding
+            final availableHeight = constraints.maxHeight - 16.0;
+            
+            // Calculate the maximum square size that fits within constraints
+            final maxSquareSizeByWidth = availableWidth / bloc.columns;
+            final maxSquareSizeByHeight = availableHeight / bloc.rows;
+            final squareSize = (maxSquareSizeByWidth < maxSquareSizeByHeight 
+                ? maxSquareSizeByWidth 
+                : maxSquareSizeByHeight).clamp(15.0, 40.0); // Smaller range for web to fit more
+            
+            return GridView.builder(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: bloc.columns,
+                childAspectRatio: 1.0,
+                crossAxisSpacing: 0,
+                mainAxisSpacing: 0,
+              ),
+              itemBuilder: (context, index) => _buildSquareItems(context, index, squareSize),
+              itemCount: bloc.rows * bloc.columns,
+            );
+          },
         ),
       ),
     );
   }
 
-  Widget _buildSquareItems(BuildContext context, int index) {
+  Widget _buildSquareItems(BuildContext context, int index, double squareSize) {
     GameBloc bloc = Provider.of<GameBloc>(context);
     int x, y = 0;
     x = (index / bloc.columns).floor();
     y = (index % bloc.columns);
     if (bloc.lose) {
       return GridTile(
-        child: Square(x: x, y: y),
+        child: Square(x: x, y: y, size: squareSize),
       );
     }
     return GestureDetector(
       onLongPress: () => bloc.onLongPress(x, y),
       onTap: () => bloc.onTap(x, y),
       child: GridTile(
-        child: Square(x: x, y: y),
+        child: Square(x: x, y: y, size: squareSize),
       ),
     );
   }
