@@ -27,11 +27,11 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Install pubversion
-        run: dart pub global activate pubversion
+      - name: Install cider
+        run: dart pub global activate cider
 
       - name: Increment version
-        run: dart pub global run pubversion patch
+        run: dart pub global run cider bump patch
 
       - name: Commit version changes
         run: |

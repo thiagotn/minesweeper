@@ -1,4 +1,4 @@
-pubversion patch
+cider bump patch
 
 flutter build appbundle
 
