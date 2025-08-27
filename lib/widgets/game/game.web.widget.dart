@@ -8,25 +8,32 @@ class GameWeb extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     GameBloc bloc = Provider.of<GameBloc>(context);
-    return Padding(
-      padding: const EdgeInsets.only(right: 8.0, left: 8.0),
-      child: Container(
-        alignment: Alignment.center,
-        decoration: buildBoxDecorationIn(),
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            // Calculate available space for the grid (accounting for padding)
-            final availableWidth = constraints.maxWidth - 16.0; // Container padding
-            final availableHeight = constraints.maxHeight - 16.0;
-            
-            // Calculate the maximum square size that fits within constraints
-            final maxSquareSizeByWidth = availableWidth / bloc.columns;
-            final maxSquareSizeByHeight = availableHeight / bloc.rows;
-            final squareSize = (maxSquareSizeByWidth < maxSquareSizeByHeight 
-                ? maxSquareSizeByWidth 
-                : maxSquareSizeByHeight).clamp(15.0, 40.0); // Smaller range for web to fit more
-            
-            return GridView.builder(
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        // Calculate available space for the grid (accounting for padding and margins)
+        final availableWidth = constraints.maxWidth * 0.9; // Use 90% of available width
+        final availableHeight = constraints.maxHeight * 0.9; // Use 90% of available height
+        
+        // Calculate the maximum square size that fits within constraints
+        final maxSquareSizeByWidth = availableWidth / bloc.columns;
+        final maxSquareSizeByHeight = availableHeight / bloc.rows;
+        final squareSize = (maxSquareSizeByWidth < maxSquareSizeByHeight 
+            ? maxSquareSizeByWidth 
+            : maxSquareSizeByHeight).clamp(12.0, 35.0); // Optimized range for web
+        
+        // Calculate total grid size
+        final gridWidth = squareSize * bloc.columns;
+        final gridHeight = squareSize * bloc.rows;
+        
+        return Center(
+          child: Container(
+            width: gridWidth + 16.0, // Add padding
+            height: gridHeight + 16.0, // Add padding
+            padding: const EdgeInsets.all(8.0),
+            decoration: buildBoxDecorationIn(),
+            child: GridView.builder(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(), // Prevent scrolling since we sized to fit
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: bloc.columns,
                 childAspectRatio: 1.0,
@@ -35,10 +42,10 @@ class GameWeb extends StatelessWidget {
               ),
               itemBuilder: (context, index) => _buildSquareItems(context, index, squareSize),
               itemCount: bloc.rows * bloc.columns,
-            );
-          },
-        ),
-      ),
+            ),
+          ),
+        );
+      },
     );
   }
 

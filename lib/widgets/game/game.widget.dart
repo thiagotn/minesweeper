@@ -10,23 +10,23 @@ class Game extends StatelessWidget {
     GameBloc bloc = Provider.of<GameBloc>(context);
     return Padding(
       padding: const EdgeInsets.only(right: 8.0, left: 8.0),
-      child: Container(
-        alignment: Alignment.center,
-        decoration: buildBoxDecorationIn(),
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            // Calculate available space for the grid (accounting for padding)
-            final availableWidth = constraints.maxWidth - 16.0; // Container padding
-            final availableHeight = constraints.maxHeight - 16.0;
-            
-            // Calculate the maximum square size that fits within constraints
-            final maxSquareSizeByWidth = availableWidth / bloc.columns;
-            final maxSquareSizeByHeight = availableHeight / bloc.rows;
-            final squareSize = (maxSquareSizeByWidth < maxSquareSizeByHeight 
-                ? maxSquareSizeByWidth 
-                : maxSquareSizeByHeight).clamp(20.0, 50.0); // Min 20, Max 50
-            
-            return GridView.builder(
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          // Calculate available space for the grid
+          final availableWidth = constraints.maxWidth - 16.0; // Account for padding
+          final availableHeight = constraints.maxHeight - 16.0;
+          
+          // Calculate the maximum square size that fits within constraints
+          final maxSquareSizeByWidth = availableWidth / bloc.columns;
+          final maxSquareSizeByHeight = availableHeight / bloc.rows;
+          final squareSize = (maxSquareSizeByWidth < maxSquareSizeByHeight 
+              ? maxSquareSizeByWidth 
+              : maxSquareSizeByHeight).clamp(18.0, 45.0); // Mobile-optimized range
+          
+          return Container(
+            alignment: Alignment.center,
+            decoration: buildBoxDecorationIn(),
+            child: GridView.builder(
               physics: ScrollPhysics(),
               shrinkWrap: true,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -37,9 +37,9 @@ class Game extends StatelessWidget {
               ),
               itemBuilder: (context, index) => _buildSquareItems(context, index, squareSize),
               itemCount: bloc.rows * bloc.columns,
-            );
-          },
-        ),
+            ),
+          );
+        },
       ),
     );
   }
