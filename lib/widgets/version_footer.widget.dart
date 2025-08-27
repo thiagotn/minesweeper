@@ -23,7 +23,7 @@ class _VersionFooterState extends State<VersionFooter> {
       });
     } catch (e) {
       setState(() {
-        _version = 'v1.0.0';
+        _version = 'v1.0.0+6';
       });
     }
   }
