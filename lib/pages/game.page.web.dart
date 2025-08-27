@@ -18,25 +18,16 @@ class GamePageWeb extends StatelessWidget {
           final isWide = constraints.maxWidth > 800;
 
           if (isWide) {
-            return Row(
+            return Column(
               children: [
+                Scoreboard(),
                 Expanded(
-                  flex: 3,
                   child: Center(
                     child: GameWeb(),
                   ),
                 ),
-                Expanded(
-                  flex: 1,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Scoreboard(),
-                      GameActions(),
-                      VersionFooter(),
-                    ],
-                  ),
-                ),
+                GameActions(),
+                VersionFooter(),
               ],
             );
           } else {
