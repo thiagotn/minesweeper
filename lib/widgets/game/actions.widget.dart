@@ -4,6 +4,10 @@ import 'package:minesweeper/themes/theme.dart';
 import 'package:provider/provider.dart';
 
 class GameActions extends StatelessWidget {
+  final double? width;
+  
+  const GameActions({Key? key, this.width}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final bloc = Provider.of<GameBloc>(context);
@@ -15,8 +19,9 @@ class GameActions extends StatelessWidget {
         maintainState: false,
         maintainAnimation: false,
         maintainSize: false,
-        replacement: Container(),
+        replacement: Container(width: width), // Apply width to replacement as well
         child: Container(
+          width: width, // Use specified width if provided
           decoration: buildBoxDecorationIn(),
           child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
