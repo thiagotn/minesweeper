@@ -3,6 +3,7 @@ import 'package:minesweeper/widgets/game/actions.widget.dart';
 import 'package:minesweeper/widgets/game/app-bar.widget.dart';
 import 'package:minesweeper/widgets/game/game.widget.dart';
 import 'package:minesweeper/widgets/game/scoreboard.widget.dart';
+import 'package:minesweeper/widgets/version_footer.widget.dart';
 
 class GamePage extends StatelessWidget {
   @override
@@ -16,6 +17,7 @@ class GamePage extends StatelessWidget {
             child: Game(),
           ),
           GameActions(),
+          VersionFooter(),
         ],
       ),
     );

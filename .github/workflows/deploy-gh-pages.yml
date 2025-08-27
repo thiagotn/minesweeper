@@ -3,6 +3,11 @@ name: Deploy to GitHub Pages
 on:
   workflow_dispatch:
 
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -10,6 +15,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
@@ -19,6 +26,20 @@ jobs:
 
       - name: Install dependencies
         run: flutter pub get
+
+      - name: Install pubversion
+        run: dart pub global activate pubversion
+
+      - name: Increment version
+        run: dart pub global run pubversion patch
+
+      - name: Commit version changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add pubspec.yaml
+          git commit -m "Increment version [skip ci]" || echo "No changes to commit"
+          git push
 
       - name: Build Web
         run: flutter build web --release --base-href /minesweeper/
