@@ -4,6 +4,7 @@ import 'package:minesweeper/widgets/game/app-bar.widget.dart';
 import 'package:minesweeper/widgets/game/game.widget.dart';
 import 'package:minesweeper/widgets/game/game.web.widget.dart';
 import 'package:minesweeper/widgets/game/scoreboard.widget.dart';
+import 'package:minesweeper/widgets/version_footer.widget.dart';
 
 class GamePageWeb extends StatelessWidget {
   const GamePageWeb({Key? key}) : super(key: key);
@@ -32,6 +33,7 @@ class GamePageWeb extends StatelessWidget {
                     children: [
                       Scoreboard(),
                       GameActions(),
+                      VersionFooter(),
                     ],
                   ),
                 ),
@@ -45,6 +47,7 @@ class GamePageWeb extends StatelessWidget {
                   child: Game(),
                 ),
                 GameActions(),
+                VersionFooter(),
               ],
             );
           }
