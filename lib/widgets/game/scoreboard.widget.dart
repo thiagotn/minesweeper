@@ -5,12 +5,17 @@ import 'package:minesweeper/themes/theme.dart';
 import 'package:provider/provider.dart';
 
 class Scoreboard extends StatelessWidget {
+  final double? width;
+  
+  const Scoreboard({Key? key, this.width}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final bloc = Provider.of<GameBloc>(context);
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
+        width: width, // Use specified width if provided
         decoration: buildBoxDecorationIn(),
         child: LayoutBuilder(
           builder: (context, constraints) {
