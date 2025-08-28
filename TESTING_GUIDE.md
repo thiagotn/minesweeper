@@ -4,7 +4,7 @@ This document outlines how to test the GameWeb width alignment feature implement
 
 ## What Was Implemented
 
-In wide mode (screen width > 800px), the Scoreboard and GameActions widgets now have the same width as the GameWeb widget, creating visual alignment.
+In wide mode (screen width > 800px), the Scoreboard and GameActions widgets now have the same width as the GameWeb widget, creating visual alignment. Additionally, vertical spacing between these components in the column has been removed to create a tighter, more cohesive layout.
 
 ## Manual Testing Steps
 
@@ -19,6 +19,8 @@ In wide mode (screen width > 800px), the Scoreboard and GameActions widgets now 
   - [ ] The GameActions (bottom - appears when game ends) has the same width as the game grid
   - [ ] All three components (Scoreboard, GameWeb, GameActions) are center-aligned
   - [ ] The components don't take the full screen width
+  - [ ] **No vertical spacing** exists between Scoreboard and GameWeb
+  - [ ] **No vertical spacing** exists between GameWeb and GameActions when visible
 
 ### 2. Non-Wide Mode Testing (Mobile/Tablet Portrait)
 **Viewport Width ≤ 800px**
@@ -61,22 +63,24 @@ Test each difficulty level in wide mode:
 
 ## Expected Visual Result
 
-In wide mode, the layout should look like this:
+In wide mode, the layout should look like this (with no spacing between components):
 ```
-        [====== Scoreboard ======]
-                    (game grid)
-          [====== GameActions ======]
+[====== Scoreboard ======]
+         (game grid)
+[====== GameActions ======]
 ```
 
-Instead of the previous:
+Instead of the previous (with spacing between components):
 ```
 [============ Scoreboard ============]
+
                 (game grid)
+
 [============ GameActions ============]
 ```
 
 ## Success Criteria
 
-✅ **Pass**: All three components (Scoreboard, GameWeb, GameActions) have visually identical widths and are center-aligned in wide mode.
+✅ **Pass**: All three components (Scoreboard, GameWeb, GameActions) have visually identical widths, are center-aligned in wide mode, and have no vertical spacing between them in the column layout.
 
-❌ **Fail**: Components have different widths, are not aligned, or there are layout regressions in non-wide mode.
+❌ **Fail**: Components have different widths, are not aligned, have unwanted spacing between them, or there are layout regressions in non-wide mode.
