@@ -19,11 +19,11 @@ class _VersionFooterState extends State<VersionFooter> {
     try {
       PackageInfo packageInfo = await PackageInfo.fromPlatform();
       setState(() {
-        _version = 'v${packageInfo.version}+${packageInfo.buildNumber}';
+        _version = 'version: ${packageInfo.version}';
       });
     } catch (e) {
       setState(() {
-        _version = 'v1.0.0+6';
+        _version = 'v1.0.3';
       });
     }
   }
@@ -35,8 +35,7 @@ class _VersionFooterState extends State<VersionFooter> {
       child: Text(
         _version,
         style: TextStyle(
-          fontSize: 12,
-          color: Colors.grey[600],
+          fontSize: 14,
           fontFamily: 'TickingTimebombBB',
         ),
         textAlign: TextAlign.center,
@@ -44,3 +43,4 @@ class _VersionFooterState extends State<VersionFooter> {
     );
   }
 }
+
