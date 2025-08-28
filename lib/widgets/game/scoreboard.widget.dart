@@ -13,7 +13,9 @@ class Scoreboard extends StatelessWidget {
   Widget build(BuildContext context) {
     final bloc = Provider.of<GameBloc>(context);
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: width != null 
+          ? const EdgeInsets.symmetric(horizontal: 8.0) // Remove vertical padding when width is specified (wide mode)
+          : const EdgeInsets.all(8.0), // Keep all padding in narrow mode
       child: Container(
         width: width, // Use specified width if provided
         decoration: buildBoxDecorationIn(),

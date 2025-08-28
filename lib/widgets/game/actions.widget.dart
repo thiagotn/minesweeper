@@ -13,7 +13,9 @@ class GameActions extends StatelessWidget {
     final bloc = Provider.of<GameBloc>(context);
 
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: width != null 
+          ? const EdgeInsets.symmetric(horizontal: 8.0) // Remove vertical padding when width is specified (wide mode)
+          : const EdgeInsets.all(8.0), // Keep all padding in narrow mode
       child: Visibility(
         visible: (bloc.lose || bloc.win),
         maintainState: false,
