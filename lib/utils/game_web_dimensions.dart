@@ -5,8 +5,14 @@ class GameWebDimensions {
   /// Calculates the width that the GameWeb widget will use
   /// This matches the calculation logic in GameWeb widget
   static double calculateGameWebWidth(BoxConstraints constraints, GameBloc bloc) {
-    // Calculate available space for the grid (accounting for padding and margins)
-    final availableWidth = constraints.maxWidth * 0.9; // Use 90% of available width
+    final isVeryWide = constraints.maxWidth >= 1200;
+    
+    // For 3-column layout, the middle column should be roughly 1/3 of screen width
+    // but we want to ensure optimal game sizing
+    final availableWidth = isVeryWide 
+        ? (constraints.maxWidth / 3).clamp(400.0, 800.0) // Middle column width for 3-column layout
+        : constraints.maxWidth * 0.9; // Use 90% of available width for standard wide mode
+        
     final availableHeight = constraints.maxHeight * 0.9; // Use 90% of available height
     
     // Calculate the maximum square size that fits within constraints

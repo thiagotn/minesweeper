@@ -64,5 +64,47 @@ void main() {
       // With clamping at 35.0 max square size, width shouldn't be enormous
       expect(width, lessThan(1000)); // Reasonable upper bound
     });
+
+    test('calculateGameWebWidth uses 3-column layout logic for very wide screens', () {
+      // Create very wide constraints (simulating 1920x1080)
+      const veryWideConstraints = BoxConstraints(
+        minWidth: 0,
+        maxWidth: 1920,
+        minHeight: 0,
+        maxHeight: 1080,
+      );
+      
+      final bloc = GameBloc();
+      bloc.select(Level.MEDIUM);
+      
+      final width = GameWebDimensions.calculateGameWebWidth(veryWideConstraints, bloc);
+      
+      // For very wide screens (>=1200px), should use middle column logic
+      // Middle column should be roughly 1/3 of screen width, clamped between 400-800
+      final expectedMiddleColumnWidth = (veryWideConstraints.maxWidth / 3).clamp(400.0, 800.0);
+      
+      // Width should be reasonable for the middle column
+      expect(width, greaterThan(0));
+      expect(width, lessThan(expectedMiddleColumnWidth));
+    });
+
+    test('calculateGameWebWidth uses standard logic for medium wide screens', () {
+      // Create medium wide constraints (between 800-1199px)
+      const mediumWideConstraints = BoxConstraints(
+        minWidth: 0,
+        maxWidth: 1000,
+        minHeight: 0,
+        maxHeight: 800,
+      );
+      
+      final bloc = GameBloc();
+      bloc.select(Level.EASY);
+      
+      final width = GameWebDimensions.calculateGameWebWidth(mediumWideConstraints, bloc);
+      
+      // For medium wide screens (<1200px), should use standard 90% logic
+      expect(width, greaterThan(0));
+      expect(width, lessThan(mediumWideConstraints.maxWidth * 0.9));
+    });
   });
 }
