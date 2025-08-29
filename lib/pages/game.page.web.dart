@@ -19,23 +19,59 @@ class GamePageWeb extends StatelessWidget {
       body: LayoutBuilder(
         builder: (context, constraints) {
           final isWide = constraints.maxWidth > 800;
+          final isVeryWide = constraints.maxWidth >= 1200; // 3-column layout for very wide screens
 
           if (isWide) {
             final bloc = Provider.of<GameBloc>(context);
             final gameWebWidth = GameWebDimensions.calculateGameWebWidth(constraints, bloc);
             
-            return Column(
-              children: [
-                Scoreboard(width: gameWebWidth),
-                Expanded(
-                  child: Center(
-                    child: GameWeb(),
+            if (isVeryWide) {
+              // 3-column layout for very wide screens (1200px+)
+              return Row(
+                children: [
+                  // Left column - spacer
+                  Expanded(
+                    flex: 1,
+                    child: Container(), // Empty spacer
                   ),
-                ),
-                GameActions(width: gameWebWidth),
-                VersionFooter(),
-              ],
-            );
+                  // Middle column - game content
+                  SizedBox(
+                    width: gameWebWidth,
+                    child: Column(
+                      children: [
+                        Scoreboard(width: gameWebWidth),
+                        Expanded(
+                          child: Center(
+                            child: GameWeb(),
+                          ),
+                        ),
+                        GameActions(width: gameWebWidth),
+                        VersionFooter(),
+                      ],
+                    ),
+                  ),
+                  // Right column - spacer
+                  Expanded(
+                    flex: 1,
+                    child: Container(), // Empty spacer
+                  ),
+                ],
+              );
+            } else {
+              // Standard wide layout for medium screens (800-1199px)
+              return Column(
+                children: [
+                  Scoreboard(width: gameWebWidth),
+                  Expanded(
+                    child: Center(
+                      child: GameWeb(),
+                    ),
+                  ),
+                  GameActions(width: gameWebWidth),
+                  VersionFooter(),
+                ],
+              );
+            }
           } else {
             return ListView(
               children: [
